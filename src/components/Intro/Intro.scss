@@ -1,5 +1,12 @@
 .Intro {
   display: flex;
   align-items: center;
-  min-height: $fullHeightMinusHeader;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.Intro__logo {
+  margin-bottom: 2rem;
 }

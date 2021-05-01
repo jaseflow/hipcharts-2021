@@ -1,2 +1,5 @@
 $headerHeight: 80px;
-$fullHeightMinusHeader: calc(100vh - $headerHeight);
+$fullHeightMinusHeader: calc(100vh - #{$headerHeight});
+$radius: 5px;
+
+$blue: #06f;

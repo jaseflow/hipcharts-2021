@@ -1,9 +1,20 @@
+// variables
 @import "./variables.scss";
+
+// shell
 @import "./App.scss";
+
+// components
 @import "components/Header/Header.scss";
+@import "components/Intro/Intro.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,7 +22,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  background: $blue;
+  font-weight: 700;
+  color: #fff;
+  height: 50px;
+  padding: 0 4rem;
+  border-radius: $radius;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.8);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+h1 {
+  margin-bottom: 2rem;
 }
