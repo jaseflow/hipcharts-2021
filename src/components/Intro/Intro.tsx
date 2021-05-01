@@ -8,9 +8,11 @@ function Intro() {
   return (
     <section className="Intro">
       <div className="container">
-        <img src={logoStacked} className="Intro__logo" alt="logo" />
-        <h1>Create top five charts for your favourite music</h1>
-        <IntroCta />
+        <div className="flex flex--guts flex--column">
+          <img src={logoStacked} className="Intro__logo" alt="logo" />
+          <h1 className="Intro__title">Create top five charts of your favourite music</h1>
+          <IntroCta />
+        </div>
       </div>
     </section>
   );

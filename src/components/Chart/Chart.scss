@@ -6,8 +6,10 @@
   margin-bottom: 1rem;
   display: block;
   color: #fff;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
   transition: all 375ms ease;
+  transform: translateZ(0);
+  border: 0.5rem solid #222;
 }
 
 .Chart__footer {
@@ -15,21 +17,28 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 2rem 1rem;
-  padding-top: 8rem;
+  height: 100%;
+  padding: 1rem 2rem;
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
   line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .Chart__title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  text-align: center;
 }
 
 .Chart__subtitle {
   display: block;
-  font-size: 66%;
-  font-weight: 300;
+  font-size: 60%;
+  border-top: 1px solid rgba(255,255,255,0.75);
+  padding-top: 0.25rem;
+  margin-top: 0.25rem;
+  opacity: 0.5;
 }
 
 

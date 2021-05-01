@@ -1,8 +1,23 @@
 @import "../Chart/Chart.scss";
 
+@keyframes showCharts {
+  0% {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .Charts {
   padding-top: 2rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  animation: showCharts 375ms 375ms ease forwards;
 }
+
 .Charts__list {
   width: 100%;
 }
