@@ -10,6 +10,8 @@
   width: 100%;
   z-index: 50;
   transition: transform 375ms ease;
+  background: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
 }
 
 .Header--hidden {

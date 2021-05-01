@@ -1,0 +1,41 @@
+.Chart {
+  padding-bottom: 100%;
+  position: relative;
+  background-size: cover;
+  border-radius: $radius;
+  margin-bottom: 1rem;
+  display: block;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: all 375ms ease;
+}
+
+.Chart__footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1rem;
+  padding-top: 8rem;
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8));
+  line-height: 1.1;
+}
+
+.Chart__title {
+  font-size: 1.75rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.Chart__subtitle {
+  display: block;
+  font-size: 66%;
+  font-weight: 300;
+}
+
+
+@media(min-width: 1024px) {
+  .Chart:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+}

@@ -7,6 +7,7 @@
 // components
 @import "components/Header/Header.scss";
 @import "components/Intro/Intro.scss";
+@import "components/Charts/Charts.scss";
 
 * {
   box-sizing: border-box;
@@ -41,3 +42,59 @@ body {
 h1 {
   margin-bottom: 2rem;
 }
+
+.escape-header {
+  min-height: $fullHeightMinusHeader;
+  padding-top: $headerHeight;
+}
+
+.container {
+  padding: 2rem;
+  width: 100%;
+}
+
+.title {
+  font-family: 'Antonio', sans-serif;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex__full {
+  flex: 1;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+.flex--aligned {
+  align-items: center;
+}
+
+.flex--centered {
+  justify-content: center;
+}
+
+.flex--spaced {
+  justify-content: space-between;
+}
+
+.flex--around {
+  justify-content: space-around;
+}
+
+.flex--guts {
+  justify-content: center;
+  align-items: center;
+}
+
+@media(min-width: 1024px) {
+  :root {
+    font-size: 20px;
+  }
+}
+

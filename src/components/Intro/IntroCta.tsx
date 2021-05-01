@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 function IntroCta() {
   return (
-    <a href="/charts" data-testid="cta" className="btn">Get started</a>
+    <Link to="/charts" data-testid="cta" className="btn">Get started</Link>
   );
 }
 
