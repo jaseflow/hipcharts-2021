@@ -13,6 +13,10 @@
 
 .Charts {
   padding-top: 2rem;
+  overflow: hidden;
+}
+
+.Charts__body {
   opacity: 0;
   transform: translateY(2rem);
   animation: showCharts 375ms 200ms ease forwards;
@@ -36,7 +40,7 @@
 
   .Charts__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;
     max-width: 1000px;
   }

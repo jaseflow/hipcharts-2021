@@ -6,7 +6,6 @@ import Charts from './components/Charts/Charts';
 import ChartBuilder from './components/ChartBuilder/ChartBuilder';
 
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   useLocation,
@@ -24,13 +23,7 @@ const charts = [
     title: 'Top 5 Albums',
     subTitle: 'Of All Time',
     imageUrl: 'https://i.scdn.co/image/ab67616d0000b273557341c7755b44dc1a838f1c',
-  },
-  {
-    id: 'tracks',
-    title: 'Top 5 Tracks',
-    subTitle: 'Of All Time',
-    imageUrl: 'https://i.scdn.co/image/ab67616d0000b2739820181489bad70372f19b94',
-  },
+  }
 ]
 
 function App() {
