@@ -16,7 +16,7 @@ it('renders without crashing', () => {
 
 it('has a link to charts page', () => {
   const history = createMemoryHistory();
-  const title = 'Create top five charts of your favourite music';
+  const title = 'Create and share top five charts';
 
   const { getByText } = render(
     <Router history={history}>

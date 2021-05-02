@@ -8,6 +8,7 @@
 @import "components/Header/Header.scss";
 @import "components/Intro/Intro.scss";
 @import "components/Charts/Charts.scss";
+@import "components/ChartBuilder/ChartBuilder.scss";
 
 * {
   box-sizing: border-box;
@@ -31,12 +32,18 @@ body {
   text-decoration: none;
   background: $blue;
   font-weight: 700;
+  font-size: 100%;
+  border: 0;
   color: #fff;
   height: 50px;
   padding: 0 4rem;
   border-radius: $radius;
   box-shadow: 0 1px 1px rgba(0,0,0,0.8);
   text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.btn--secondary {
+  background: #222;
 }
 
 h1 {
@@ -53,10 +60,26 @@ h1 {
   width: 100%;
 }
 
+.container--small {
+  max-width: 600px;
+}
+
 .title {
   font-family: 'Antonio', sans-serif;
   text-transform: uppercase;
   font-size: 2rem;
+  text-align: center;
+}
+
+.title__small {
+  display: block;
+  padding-top: 0.5rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.75);
+  font-size: 40%;
+  letter-spacing: 8px;
+  font-weight: 300;
+  opacity: 0.3;
 }
 
 .flex {

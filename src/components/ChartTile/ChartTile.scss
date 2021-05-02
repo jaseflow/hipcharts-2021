@@ -1,4 +1,4 @@
-.Chart {
+.ChartTile {
   padding-bottom: 100%;
   position: relative;
   background-size: cover;
@@ -12,7 +12,7 @@
   border: 0.5rem solid #222;
 }
 
-.Chart__footer {
+.ChartTile__footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -26,13 +26,13 @@
   justify-content: flex-end;
 }
 
-.Chart__title {
-  font-size: 1.5rem;
+.ChartTile__title {
+  font-size: 1.25rem;
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
   text-align: center;
 }
 
-.Chart__subtitle {
+.ChartTile__subtitle {
   display: block;
   font-size: 60%;
   border-top: 1px solid rgba(255,255,255,0.75);
@@ -41,9 +41,8 @@
   opacity: 0.5;
 }
 
-
 @media(min-width: 1024px) {
-  .Chart:hover {
+  .ChartTile:hover {
     transform: translateY(-0.25rem);
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   }

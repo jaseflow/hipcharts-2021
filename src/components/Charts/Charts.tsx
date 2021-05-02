@@ -1,12 +1,17 @@
 import React from 'react';
 
-import Chart from '../Chart/Chart';
+import ChartTile from '../ChartTile/ChartTile';
 
-function Charts({ charts }) {
+interface ChartsProps {
+  charts: any[]
+}
+
+function Charts({ charts }: ChartsProps) {
 
   const chartsList = charts.map((chart) => {
     return (
-      <Chart
+      <ChartTile
+        key={`chart-${chart.id}`}
         id={chart.id}
         title={chart.title}
         subTitle={chart.subTitle}
@@ -16,10 +21,10 @@ function Charts({ charts }) {
   })
 
   return (
-    <section className="flex flex--guts escape-header Charts">
+    <section className="flex flex--guts escape-header">
       <div className="container flex flex--column flex--guts">
         <h1 className="Charts__title title title--large">Choose a chart</h1>
-        <div class="Charts__list">
+        <div className="Charts__list">
           {chartsList}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  useLocation,
 } from 'react-router-dom';
 
 const charts = [
@@ -16,13 +17,13 @@ const charts = [
     id: 'artists',
     title: 'Top 5 Artists',
     subTitle: 'Of All Time',
-    imageUrl: 'https://i.scdn.co/image/4cb57ae1ef87546455db9cf65ba414c311ff459a',
+    imageUrl: 'https://i.scdn.co/image/5c8d57d92825466637905f0d4219064cb39333e9',
   },
   {
     id: 'albums',
     title: 'Top 5 Albums',
     subTitle: 'Of All Time',
-    imageUrl: 'https://i.scdn.co/image/ab67616d0000b27353f6fa0d2589c6a7174f4b81',
+    imageUrl: 'https://i.scdn.co/image/ab67616d0000b273557341c7755b44dc1a838f1c',
   },
   {
     id: 'tracks',
@@ -34,10 +35,18 @@ const charts = [
 
 function App() {
 
+  let location = useLocation();
+
+  const [headerHidden, setHeaderHidden] = useState(false)
+
+  useEffect(() => {
+    console.log(location);
+  }, [location])
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header hidden={headerHidden} />
         <Switch>
           <Route path="/" exact children={<Intro />} />
           <Route path="/charts" exact children={<Charts charts={charts} />} />
