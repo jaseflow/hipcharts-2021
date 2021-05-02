@@ -21,7 +21,7 @@ function Charts({ charts }: ChartsProps) {
   })
 
   return (
-    <section className="flex flex--guts escape-header">
+    <section className="flex flex--guts escape-header Charts">
       <div className="container flex flex--column flex--guts">
         <h1 className="Charts__title title title--large">Choose a chart</h1>
         <div className="Charts__list">

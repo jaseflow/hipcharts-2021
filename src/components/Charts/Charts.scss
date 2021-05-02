@@ -15,7 +15,7 @@
   padding-top: 2rem;
   opacity: 0;
   transform: translateY(2rem);
-  animation: showCharts 375ms 375ms ease forwards;
+  animation: showCharts 375ms 200ms ease forwards;
 }
 
 .Charts__list {

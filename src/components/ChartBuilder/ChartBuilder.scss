@@ -19,11 +19,12 @@
   border: 0;
   margin-bottom: 1rem;
   border-radius: $radius;
+  outline: 0;
 }
 
 .ChartBuilder__items {
   display: grid;
-  grid-row-gap: 1px;
+  grid-row-gap: 0.25rem;
   list-style: none;
   margin-bottom: 1rem;
 }
@@ -41,4 +42,69 @@
 
 .ChartBuilderItem__empty {
   opacity: 0.25;
+}
+
+.ChartBuilder__title,
+.ChartBuilder__search,
+.ChartBuilder__items,
+.ChartBuilder__footer {
+  opacity: 0;
+}
+
+.ChartBuilder__title {
+  animation: showTitle 375ms ease forwards;
+}
+
+.ChartBuilder__search {
+  transform: translateY(-2rem);
+  animation: showSearch 375ms ease forwards;
+}
+
+.ChartBuilder__items {
+  animation: showItems 375ms 200ms ease forwards;
+}
+
+.ChartBuilder__footer {
+  transform: translateY(2rem);
+  animation: showFooter 375ms ease forwards;
+}
+
+@keyframes showTitle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes showSearch {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes showItems {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes showFooter {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

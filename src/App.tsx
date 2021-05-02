@@ -40,7 +40,11 @@ function App() {
   const [headerHidden, setHeaderHidden] = useState(false)
 
   useEffect(() => {
-    console.log(location);
+    if (location.pathname === '/') {
+      setHeaderHidden(true)
+    } else if (headerHidden) {
+      setHeaderHidden(false)
+    }
   }, [location])
 
   return (
