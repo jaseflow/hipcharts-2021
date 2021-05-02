@@ -10,7 +10,7 @@ function Intro() {
       <div className="container">
         <div className="flex flex--guts flex--column">
           <img src={logoStacked} className="Intro__logo" alt="logo" />
-          <h1 className="Intro__title">Create and share top five charts</h1>
+          <h1 className="Intro__title title">Create and share top five charts</h1>
           <IntroCta />
         </div>
       </div>

@@ -17,11 +17,10 @@ function ChartBuilder() {
   return (
     <section className="ChartBuilder escape-header flex flex--guts">
       <div className="container container--small">
-        <h1 className="title title--large">
-          Top 5 Artists
-          <small className="title__small">Of All Time</small>
+        <h1 className="ChartBuilder__title title">
+          Top 5 Artists of all time
         </h1>
-        <div class="ChartBuilderSearch">
+        <div className="ChartBuilderSearch">
           <input
             placeholder="Search for artists"
             className="ChartBuilderSearch__input"
