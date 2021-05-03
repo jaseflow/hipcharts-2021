@@ -63,7 +63,7 @@ function ChartBuilderSearch(
     if (hasImage) {
       return (
         <div
-          key={`result-${r.name}`}
+          key={`result-${r.id}`}
           className={`ResultsItem ${i === resultsIndex ? 'ResultsItem--selected' : ''}`}>
           <img src={lastImage.url} className="ResultsItem__img"/>
           {r.name}
@@ -84,6 +84,7 @@ function ChartBuilderSearch(
         onKeyDown={handleKeyDown}
         onBlur={onSearchStop}
         type="input" />
+      <i className="fal fa-search ChartBuilderSearch__icon" />
       <div className={`Results ${searching ? 'Results--searching' : ''}`}>
         {resultsList}
       </div>

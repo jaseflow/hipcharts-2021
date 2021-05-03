@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import ChartBuilderItem from './ChartBuilderItem';
 import ChartBuilderSearch from './ChartBuilderSearch';
 
+import update from 'immutability-helper';
+
 import { useParams } from "react-router-dom";
 
 const emptyItems = [{},{},{},{},{}];
@@ -10,7 +12,7 @@ const emptyItems = [{},{},{},{},{}];
 interface Chart {
   name?: string;
   id?: string;
-  imageUrl?: string;
+  images?: any[];
 }
 
 function ChartBuilder() {
@@ -24,9 +26,17 @@ function ChartBuilder() {
   const [searching, setSearching ] = useState(false)
 
   const itemsList = items.map((item: Chart, i) => {
+
+    const hasImage = item.images && item.images.length > 0
+    const lastImage = item.images && item.images[item.images.length - 1].url
+
+    const artist = item.artists  && item.artists[0].name;
+
     return (
       <ChartBuilderItem
         name={item.name}
+        imageUrl={hasImage && lastImage}
+        artist={artist}
         key={`chart-item-${i}`}
         order={i + 1}
         chartType={chart}
@@ -43,17 +53,10 @@ function ChartBuilder() {
   }
 
   function handleSearchEnter(e: any) {
-    let newChart : Chart = {}
-    let newItems = emptyItems;
-    newChart.name = e.target.value;
-    newItems = items.map((item, i) => {
-      if (i === insertIndex) {
-        return newChart
-      } else {
-        return {}
-      }
-    })
+    const newItems = update(items, { $splice: [[insertIndex, 1, results[resultsIndex]]] });
     setItems(newItems);
+    setInsertIndex(insertIndex + 1);
+    setResultsIndex(0);
   }
 
   function handleSearchStart() {
@@ -102,7 +105,7 @@ function ChartBuilder() {
             {itemsList}
           </ol>
           <footer className="ChartBuilder__footer">
-            <button className="btn">Publish</button>
+            <button className="btn">Share</button>
             <button
               className="btn btn--secondary"
               onClick={reset}>
