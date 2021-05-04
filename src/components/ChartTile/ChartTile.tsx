@@ -21,8 +21,8 @@ function ChartTile(
     <Link to={`/charts/${id}`} className="ChartTile" style={{ backgroundImage: `url(${imageUrl})`}}>
       <footer className="ChartTile__footer">
         <h3 className="ChartTile__title">
-          {title} 
-          <small className="ChartTile__subtitle">{ subTitle }</small>
+          Top 5 {title} 
+          <small className="ChartTile__subtitle">Of All Time</small>
         </h3>
       </footer>
     </Link>

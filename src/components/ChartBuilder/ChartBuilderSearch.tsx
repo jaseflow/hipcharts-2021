@@ -43,7 +43,14 @@ function ChartBuilderSearch(
   }
 
   useEffect(() => {
+    let realChartType = '';
     const query = chartType && chartType.slice(0, -1);
+
+    if (chartType === 'rappers') {
+      realChartType = 'artists'
+    } else {
+      realChartType = chartType
+    }
 
     if (value === '') {
       onSearchStop();
@@ -51,7 +58,7 @@ function ChartBuilderSearch(
 
     if (value) {
       onSearchStart();
-      fetch(`http://localhost:4040/search/${chartType}?${query}=${value}`)
+      fetch(`http://localhost:4040/search/${realChartType}?${query}=${value}`)
         .then(response => response.json())
         .then((data) => {
           onSearchResults(data)

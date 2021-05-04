@@ -14,14 +14,12 @@ import {
 const charts = [
   {
     id: 'artists',
-    title: 'Top 5 Artists',
-    subTitle: 'Of All Time',
+    title: 'Rappers',
     imageUrl: 'https://i.scdn.co/image/5c8d57d92825466637905f0d4219064cb39333e9',
   },
   {
     id: 'albums',
-    title: 'Top 5 Albums',
-    subTitle: 'Of All Time',
+    title: 'Albums',
     imageUrl: 'https://i.scdn.co/image/ab67616d0000b273557341c7755b44dc1a838f1c',
   }
 ]
@@ -31,6 +29,7 @@ function App() {
   let location = useLocation();
 
   const [headerHidden, setHeaderHidden] = useState(false)
+  const [refreshingChart, setRefreshingChart ] = useState(false)
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -38,6 +37,10 @@ function App() {
     } else if (headerHidden) {
       setHeaderHidden(false)
     }
+    setRefreshingChart(true)
+    setTimeout(() => {
+      setRefreshingChart(false)
+    }, 600)
   }, [headerHidden, location])
 
   return (
@@ -46,7 +49,7 @@ function App() {
       <Switch>
         <Route path="/" exact children={<Intro />} />
         <Route path="/charts" exact children={<Charts charts={charts} />} />
-        <Route path="/charts/:chart" children={<ChartBuilder />} />
+        <Route path="/charts/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
       </Switch>
     </div>
   );

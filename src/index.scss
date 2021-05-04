@@ -58,6 +58,12 @@ body {
   background: #222;
 }
 
+.btn--large {
+  height: 70px;
+  font-size: 125%;
+  padding: 0 4rem;
+}
+
 h1 {
   margin-bottom: 2rem;
 }
@@ -128,7 +134,7 @@ h1 {
 
 @media(min-width: 1024px) {
   .title--large {
-    font-size: 3rem;
+    font-size: 3.75rem;
   }
 }
 

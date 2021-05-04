@@ -5,7 +5,7 @@ import ChartBuilderSearch from './ChartBuilderSearch';
 
 import update from 'immutability-helper';
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const arrayMove = require('array-move');
 
@@ -18,7 +18,11 @@ interface Chart {
   artists?: any[];
 }
 
-function ChartBuilder() {
+interface ChartBuilderProps {
+  refresh?: boolean;
+}
+
+function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   let { chart } = useParams<{ chart: string }>();
 
@@ -110,16 +114,11 @@ function ChartBuilder() {
   return (
     <section className="ChartBuilder escape-header flex flex--guts">
       <div className="container container--small">
-        <div className="ChartBuilder__wrap">
-          <h1 className="ChartBuilder__title title" data-testid="title">
-            {
-              {
-              'albums': 'Top 5 Albums Of All Time',
-              'tracks': 'Top 5 Tracks Of All Time',
-              'artists': 'Top 5 Artists Of All Time',
-              }[chart]
-            }
-          </h1>
+        <div className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
+          {chart === 'albums'
+            ? <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Albums Of All Time</h1>
+            : <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
+          }
           <div className="ChartBuilder__search">
             <ChartBuilderSearch
               searching={searching}
@@ -139,7 +138,7 @@ function ChartBuilder() {
               {itemsList}
             </ol>
             <footer className="ChartBuilder__footer">
-              <button disabled={!chartFull} className="btn">Share</button>
+              <button disabled={!chartFull} className="btn">Publish</button>
               <button
                 className="btn btn--secondary"
                 onClick={reset}>
@@ -148,6 +147,18 @@ function ChartBuilder() {
             </footer>
           </div>
         </div>
+        {chart === 'albums' &&
+          <Link to="/charts/artists" className="ChartBuilder__link ChartBuilder__link--back">
+            <i className="fa fa-chevron-left" style={{marginRight: '1rem'}}></i>
+            Create a Top 5 Rappers Chart
+          </Link>
+        }
+        {chart === 'artists' &&
+          <Link to="/charts/albums" className="ChartBuilder__link ChartBuilder__link--forward">
+            Create a Top 5 Albums Chart
+            <i className="fa fa-chevron-right" style={{marginLeft: '1rem'}}></i>
+          </Link>
+        }
       </div>
     </section>
   );
