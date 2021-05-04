@@ -7,6 +7,9 @@ interface ChartBuilderItemProps {
   imageUrl?: string;
   order: number;
   artist?: string;
+  onMoveUp?: any;
+  onMoveDown?: any;
+  onRemove?: any;
 }
 
 function ChartBuilderItem({
@@ -16,24 +19,38 @@ function ChartBuilderItem({
   imageUrl,
   order,
   artist,
+  onMoveUp,
+  onMoveDown,
+  onRemove,
 }: ChartBuilderItemProps) {
+	const index = order - 1;
+
   return (
     <li className="ChartBuilderItem">
       <strong className="ChartBuilderItem__order">{ order }</strong>
       {name && name.length > 0
         ? (
-          <div className="flex flex--aligned flex--spaced flex__full">
+          <div className="flex flex--aligned flex--spaced flex__full ChartBuilderItem__content">
             <div className="flex flex--aligned">
-              <img src={imageUrl} className="ResultsItem__img"/>
+              <img src={imageUrl} alt={name} className="ResultsItem__img"/>
               <div>
                 <span className="ChartBuilderItem__name">{ name }</span>
                 {chartType === 'albums' ? <small className="ChartBuilderItem__artist">{artist}</small> : null}
               </div>
             </div>
-            <div class="flex flex--aligned">
-              <i className={`fa fa-chevron-up ChartBuilderItem__action ${order === 1 ? 'ghosted': ''}`} />
-              <i className="fa fa-chevron-down ChartBuilderItem__action" />
-              <i className={`fa fa-times ChartBuilderItem__action ${order === 5 ? 'ghosted': ''}`} />
+            <div className="flex flex--aligned">
+              <i
+                onClick={() => order === 1 ? null : onMoveUp(index)}
+                className={`fa fa-chevron-up ChartBuilderItem__action ${order === 1 ? 'ghosted': ''}`}
+              />
+              <i
+                onClick={() => order === 5 ? null : onMoveDown(index)}
+                className={`fa fa-chevron-down ChartBuilderItem__action ${order === 5 ? 'ghosted': ''}`}
+              />
+              <i
+                onClick={() => onRemove(index)}
+                className="fa fa-times ChartBuilderItem__action"
+              />
             </div>
           </div>
         )

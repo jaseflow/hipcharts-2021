@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 interface ChartBuilderSearchProps {
   chartType: string;
+  disabled: boolean;
   results?: any[];
   resultsIndex?: number;
   searching?: boolean;
@@ -15,6 +16,7 @@ interface ChartBuilderSearchProps {
 function ChartBuilderSearch(
   {
     chartType,
+    disabled,
     onSearchStart,
     onSearchStop,
     onSearchEnter,
@@ -55,28 +57,35 @@ function ChartBuilderSearch(
           onSearchResults(data)
         })
     }
-  }, [value])
+  }, [value]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const resultsList = results && results.length > 0 && results.map((r, i) => {
-    const hasImage = r.images && r.images.length > 0
-    const lastImage = r.images && r.images[r.images.length - 1]
-    if (hasImage) {
-      return (
-        <div
-          key={`result-${r.id}`}
-          className={`ResultsItem ${i === resultsIndex ? 'ResultsItem--selected' : ''}`}>
-          <img src={lastImage.url} className="ResultsItem__img"/>
-          {r.name}
-        </div>
-      )
+  const resultsWithImages = results && results.length > 0 && results.filter((r) => {
+    if (r.images.length) {
+      return true
+    } else {
+      return false
     }
   })
 
+  const resultsList = resultsWithImages && resultsWithImages.map((r, i) => {
+    const lastImage = r.images && r.images[r.images.length - 1]
+
+    return (
+      <div
+        key={`result-${r.id}`}
+        className={`ResultsItem ${i === resultsIndex ? 'ResultsItem--selected' : ''}`}>
+        <img src={lastImage.url} alt={r.name} className="ResultsItem__img"/>
+        {r.name}
+      </div>
+    )
+  })
+
   return (
-    <div className="ChartBuilderSearch">
+    <div className={`ChartBuilderSearch ${disabled ? 'ChartBuilderSearch--disabled' : ''}`}>
       <input
         autoFocus
         value={value}
+        disabled={disabled}
         data-testid="search"
         placeholder={`Search for ${chartType}`}
         className="ChartBuilderSearch__input"
@@ -84,7 +93,7 @@ function ChartBuilderSearch(
         onKeyDown={handleKeyDown}
         onBlur={onSearchStop}
         type="input" />
-      <i className="fal fa-search ChartBuilderSearch__icon" />
+      <i className="fas fa-search ChartBuilderSearch__icon" />
       <div className={`Results ${searching ? 'Results--searching' : ''}`}>
         {resultsList}
       </div>

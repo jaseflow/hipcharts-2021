@@ -11,6 +11,12 @@
   border-radius: $radius;
 }
 
+.ChartBuilderItem__content {
+  opacity: 0;
+  transform: translateX(-2rem);
+  animation: showContent 375ms ease forwards;
+}
+
 .ChartBuilderItem__name {
   font-weight: 600;
 }
@@ -30,12 +36,19 @@
   cursor: pointer;
   transition: all 375ms ease;
   transform: translateZ(0);
+  border-radius: $radius;
+  &.clicked,
+  &:active {
+    animation: clicked 375ms ease;
+  }
   &.ghosted {
     opacity: 0.25 !important;
+    cursor: default;
+    background: none !important;
   }
   &:hover {
     opacity: 1;
-    transform: scale(1.25);
+    background: #111;
   }
 }
 
@@ -84,6 +97,16 @@
   z-index: 50;
 }
 
+.ChartBuilder__form {
+  position: relative;
+  transition: transform 375ms 100ms ease;
+}
+
+.ChartBuilder__form--done {
+  z-index: 60;
+  transform: translateY(-80px);
+}
+
 .ChartBuilder__items {
   animation: showItems 375ms 200ms ease forwards;
 }
@@ -110,7 +133,7 @@
 
 .ChartBuilderSearch__icon {
   position: absolute;
-  top: 14px;
+  top: 1rem;
   right: 1rem;
   color: #222;
 }
@@ -154,6 +177,29 @@
 
 .Results--searching {
   transform: translateX(-100%);
+}
+
+@keyframes clicked {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes showTitle {

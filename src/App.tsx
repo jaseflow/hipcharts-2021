@@ -38,7 +38,7 @@ function App() {
     } else if (headerHidden) {
       setHeaderHidden(false)
     }
-  }, [location])
+  }, [headerHidden, location])
 
   return (
     <div className="App">

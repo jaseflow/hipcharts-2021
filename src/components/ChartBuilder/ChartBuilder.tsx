@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import ChartBuilderItem from './ChartBuilderItem';
 import ChartBuilderSearch from './ChartBuilderSearch';
@@ -7,12 +7,15 @@ import update from 'immutability-helper';
 
 import { useParams } from "react-router-dom";
 
+const arrayMove = require('array-move');
+
 const emptyItems = [{},{},{},{},{}];
 
 interface Chart {
   name?: string;
   id?: string;
   images?: any[];
+  artists?: any[];
 }
 
 function ChartBuilder() {
@@ -24,6 +27,12 @@ function ChartBuilder() {
   const [results, setResults ] = useState([])
   const [resultsIndex, setResultsIndex] = useState(0)
   const [searching, setSearching ] = useState(false)
+
+  const chartFull = useMemo(() => {
+    const firstAvailable = items.findIndex((item:any) => !item.name)
+    setInsertIndex(firstAvailable)
+    return items.every((item:any) => item['name'])
+  },[items]);
 
   const itemsList = items.map((item: Chart, i) => {
 
@@ -40,9 +49,30 @@ function ChartBuilder() {
         key={`chart-item-${i}`}
         order={i + 1}
         chartType={chart}
+        onMoveUp={handleMoveUp}
+        onMoveDown={handleMoveDown}
+        onRemove={handleRemove}
       />
     )
   })
+
+  function handleRemove(i: number) {
+    const newItems = update(items, { $splice: [[i, 1, {}]] });
+    setInsertIndex(0);
+    setItems(newItems);
+  }
+
+  function handleMoveDown(i: number) {
+		const newOrder = arrayMove(items, i, i + 1)
+    const newItems = update(items, { $set: newOrder })
+    setItems(newItems);
+  }
+
+  function handleMoveUp(i: number) {
+		const newOrder = arrayMove(items, i, i - 1)
+    const newItems = update(items, { $set: newOrder })
+    setItems(newItems);
+  }
 
   function handleSearchNavigate(direction: string) {
     if (direction === 'up') {
@@ -65,6 +95,8 @@ function ChartBuilder() {
 
   function handleSearchStop() {
     setSearching(false);
+    setResultsIndex(0);
+		setResults([]);
   }
 
   function handleSearchResults(results: any) {
@@ -91,6 +123,7 @@ function ChartBuilder() {
           <div className="ChartBuilder__search">
             <ChartBuilderSearch
               searching={searching}
+              disabled={chartFull}
               results={results}
               resultsIndex={resultsIndex}
               chartType={chart}
@@ -101,17 +134,19 @@ function ChartBuilder() {
               onSearchResults={handleSearchResults}
             />
           </div>
-          <ol className="ChartBuilder__items">
-            {itemsList}
-          </ol>
-          <footer className="ChartBuilder__footer">
-            <button className="btn">Share</button>
-            <button
-              className="btn btn--secondary"
-              onClick={reset}>
-              Reset
-            </button>
-          </footer>
+          <div className={`ChartBuilder__form ${chartFull ? 'ChartBuilder__form--done' : ''}`}>
+            <ol className="ChartBuilder__items">
+              {itemsList}
+            </ol>
+            <footer className="ChartBuilder__footer">
+              <button disabled={!chartFull} className="btn">Share</button>
+              <button
+                className="btn btn--secondary"
+                onClick={reset}>
+                Reset
+              </button>
+            </footer>
+          </div>
         </div>
       </div>
     </section>
