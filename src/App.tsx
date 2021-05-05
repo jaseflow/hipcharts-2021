@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
@@ -31,13 +31,25 @@ function App() {
   const [headerHidden, setHeaderHidden] = useState(false)
   const [refreshingChart, setRefreshingChart ] = useState(false)
 
+  const usePrevious = <T extends unknown>(value: T): T | undefined => {
+    const ref = useRef<T>();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+
+  const prevLocation = usePrevious(location);
+
   useEffect(() => {
     if (location.pathname === '/') {
       setHeaderHidden(true)
     } else if (headerHidden) {
       setHeaderHidden(false)
     }
-    setRefreshingChart(true)
+    if (prevLocation && prevLocation.pathname.includes('/charts/')) {
+      setRefreshingChart(true)
+    }
     setTimeout(() => {
       setRefreshingChart(false)
     }, 600)
