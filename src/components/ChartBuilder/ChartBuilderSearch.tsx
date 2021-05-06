@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import ChartBuilderResult from './ChartBuilderResult';
+
 interface ChartBuilderSearchProps {
   chartType: string;
   disabled: boolean;
@@ -37,6 +39,7 @@ function ChartBuilderSearch(
       onSearchNavigate('up')
     }
     if (e.keyCode === 13) {
+      e.preventDefault();
       onSearchEnter(e)
       setValue('');
     }
@@ -78,12 +81,13 @@ function ChartBuilderSearch(
     const lastImage = r.images && r.images[r.images.length - 1]
 
     return (
-      <div
-        key={`result-${r.id}`}
-        className={`ResultsItem ${i === resultsIndex ? 'ResultsItem--selected' : ''}`}>
-        <img src={lastImage.url} alt={r.name} className="ResultsItem__img"/>
-        {r.name}
-      </div>
+      <ChartBuilderResult
+        key={`result-${r.name}`}
+        selected={i === resultsIndex}
+        imageUrl={lastImage.url}
+        result={r.name}
+        id={r.id}
+      />
     )
   })
 
@@ -102,6 +106,7 @@ function ChartBuilderSearch(
         type="input" />
       <i className="fas fa-search ChartBuilderSearch__icon" />
       <div className={`Results ${searching ? 'Results--searching' : ''}`}>
+        <h4 className="Results__heading">Searching for <strong>{value}</strong></h4>
         {resultsList}
       </div>
     </div>

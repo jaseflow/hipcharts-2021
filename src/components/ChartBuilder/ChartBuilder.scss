@@ -177,6 +177,16 @@
   background: #111;
 }
 
+.Results__heading {
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  strong {
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
 .ResultsItem {
   height: 60px;
   display: flex;
@@ -201,6 +211,11 @@
   height: 60px;
   object-fit: cover;
   margin-right: 1rem;
+  opacity: 0;
+}
+
+.ResultsItem__img--loaded {
+  opacity: 1;
 }
 
 .Results--searching {

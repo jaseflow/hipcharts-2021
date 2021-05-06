@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ChartBuilderItemProps {
   id?: string;
@@ -25,6 +25,8 @@ function ChartBuilderItem({
 }: ChartBuilderItemProps) {
 	const index = order - 1;
 
+  const [imgLoaded, setImgLoaded] = useState(false)
+
   return (
     <li className="ChartBuilderItem">
       <strong className="ChartBuilderItem__order">{ order }</strong>
@@ -32,7 +34,12 @@ function ChartBuilderItem({
         ? (
           <div className="flex flex--aligned flex--spaced flex__full ChartBuilderItem__content">
             <div className="flex flex--aligned">
-              <img src={imageUrl} alt={name} className="ResultsItem__img"/>
+              <img 
+                src={imageUrl}
+                alt={name}
+                className={`ResultsItem__img ${imgLoaded ? 'ResultsItem__img--loaded': ''}`}
+                onLoad={() => setImgLoaded(true)}
+              />
               <div>
                 <span className="ChartBuilderItem__name">{ name }</span>
                 {chartType === 'albums' ? <small className="ChartBuilderItem__artist">{artist}</small> : null}

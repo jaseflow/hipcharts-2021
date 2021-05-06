@@ -5,7 +5,7 @@ import ChartBuilderSearch from './ChartBuilderSearch';
 
 import update from 'immutability-helper';
 
-import { useParams, Link } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 
 const arrayMove = require('array-move');
 
@@ -25,6 +25,8 @@ interface ChartBuilderProps {
 function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   let { chart } = useParams<{ chart: string }>();
+
+  const history = useHistory();
 
   const [items, setItems] = useState(emptyItems)
   const [insertIndex, setInsertIndex] = useState(0)
@@ -111,10 +113,28 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setItems(emptyItems);
   }
 
+  function handlePublish(e: any) {
+    e.preventDefault();
+    const data = {
+      type: chart,
+      items:  items.map((d: any) => d.id).join('|')
+    }
+    fetch('http://localhost:4040/charts/new', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => history.push(`/chart/${data.insertId}`))
+  }
+
   return (
     <section className="ChartBuilder escape-header flex flex--guts">
       <div className="container container--small">
-        <div className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
+        <form onSubmit={handlePublish} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
           {chart === 'albums'
             ? <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Albums Of All Time</h1>
             : <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
@@ -138,7 +158,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
               {itemsList}
             </ol>
             <footer className="ChartBuilder__footer">
-              <button disabled={!chartFull} className="btn">Publish</button>
+              <button type="submit" className="btn">Publish</button>
               <button
                 className="btn btn--secondary"
                 onClick={reset}>
@@ -146,7 +166,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
               </button>
             </footer>
           </div>
-        </div>
+        </form>
         {chart === 'albums' &&
           <Link to="/charts/artists" className="ChartBuilder__link ChartBuilder__link--back">
             <i className="fa fa-chevron-left" style={{marginRight: '1rem'}}></i>
