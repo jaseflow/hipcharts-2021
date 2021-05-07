@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
+import Chart from './components/Chart/Chart';
 import Charts from './components/Charts/Charts';
 import ChartBuilder from './components/ChartBuilder/ChartBuilder';
 
@@ -61,7 +62,8 @@ function App() {
       <Switch>
         <Route path="/" exact children={<Intro />} />
         <Route path="/charts" exact children={<Charts charts={charts} />} />
-        <Route path="/charts/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
+        <Route path="/create/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
+        <Route path="/chart/:chart" children={<Chart />} />
       </Switch>
     </div>
   );

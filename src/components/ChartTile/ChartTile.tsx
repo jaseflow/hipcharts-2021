@@ -18,7 +18,7 @@ function ChartTile(
   }: ChartTileProps) {
 
   return (
-    <Link to={`/charts/${id}`} className="ChartTile" style={{ backgroundImage: `url(${imageUrl})`}}>
+    <Link to={`/create/${id}`} className="ChartTile" style={{ backgroundImage: `url(${imageUrl})`}}>
       <footer className="ChartTile__footer">
         <h3 className="ChartTile__title">
           Top 5 {title} 
