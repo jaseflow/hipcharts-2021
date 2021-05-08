@@ -1,0 +1,40 @@
+.ChartItem {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.ChartItem__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.ChartItem__footer {
+  background: linear-gradient(rgba(0,0,0,0), #111);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ChartItem__name {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+@media(min-width: 1200px) {
+  .ChartItem__name {
+    font-size: 1.5rem;
+  }
+  .ChartItem:first-child .ChartItem__name {
+    font-size: 2rem;
+  }
+}

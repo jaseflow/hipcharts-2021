@@ -48,7 +48,7 @@ function App() {
     } else if (headerHidden) {
       setHeaderHidden(false)
     }
-    if (prevLocation && prevLocation.pathname.includes('/charts/')) {
+    if (prevLocation && prevLocation.pathname.includes('/create/')) {
       setRefreshingChart(true)
     }
     setTimeout(() => {

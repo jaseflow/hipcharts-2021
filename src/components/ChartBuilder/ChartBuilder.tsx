@@ -168,13 +168,13 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
           </div>
         </form>
         {chart === 'albums' &&
-          <Link to="/charts/artists" className="ChartBuilder__link ChartBuilder__link--back">
+          <Link to="/create/artists" className="ChartBuilder__link ChartBuilder__link--back">
             <i className="fa fa-chevron-left" style={{marginRight: '1rem'}}></i>
             Create a Top 5 Rappers Chart
           </Link>
         }
         {chart === 'artists' &&
-          <Link to="/charts/albums" className="ChartBuilder__link ChartBuilder__link--forward">
+          <Link to="/create/albums" className="ChartBuilder__link ChartBuilder__link--forward">
             Create a Top 5 Albums Chart
             <i className="fa fa-chevron-right" style={{marginLeft: '1rem'}}></i>
           </Link>
