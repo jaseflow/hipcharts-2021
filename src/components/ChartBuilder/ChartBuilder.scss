@@ -14,6 +14,11 @@
   align-items: center;
   padding: 0 2rem;
   border-radius: $radius;
+  transition: background 375ms ease;
+  cursor: pointer;
+  &:hover {
+    background: #222;
+  }
 }
 
 .ChartBuilderItem__content {
@@ -42,8 +47,7 @@
   transition: all 375ms ease;
   transform: translateZ(0);
   border-radius: $radius;
-  &.clicked,
-  &:active {
+  &.clicked {
     animation: clicked 375ms ease;
   }
   &.ghosted {
@@ -78,6 +82,14 @@
 
 .ChartBuilderItem__empty {
   opacity: 0.15;
+  transition: opacity 375ms ease;
+}
+
+.ChartBuilderItem:hover .ChartBuilderItem__empty {
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .ChartBuilder__title,
@@ -98,12 +110,15 @@
   position: fixed;
   bottom: 2rem;
   border-radius: $radius * 2;
-  background: rgba(255,255,255,0.1);
   opacity: 0.75;
   color: #fff;
   text-align: center;
   text-decoration: none;
   font-weight: 600;
+  transition: background 357ms ease;
+  &:hover {
+    background: rgba(255,255,255,0.1);
+  }
 }
 
 .ChartBuilder__link--back {
@@ -148,22 +163,70 @@
   position: relative;
 }
 
-.ChartBuilderSearch__input {
-  height: 50px;
-  width: 100%;
-  font-size: 100%;
-  padding: 0 1rem;
-  border: 0;
-  margin-bottom: 1rem;
-  border-radius: $radius;
-  outline: 0;
-}
-
 .ChartBuilderSearch__icon {
   position: absolute;
   top: 1rem;
   right: 1rem;
   color: #222;
+}
+
+.ChartBuilderModal {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 375ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChartBuilderModal--open {
+  opacity: 1;
+  transform: translateX(-100%);
+}
+
+.ChartBuilderModal__content {
+  width: 100%;
+  max-width: 420px;
+  background: #222;
+  padding: 2rem;
+  border-radius: $radius;
+  position: relative;
+  small {
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    opacity: 0.75;
+  }
+}
+
+.ChartBuilderModal__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  width: 50px;
+  height: 50px;
+  line-height: 50px !important;
+  text-align: center;
+  opacity: 0.5;
+  transition: opacity 375ms ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.ChartBuilderModal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 -1rem 0;
 }
 
 .Results {

@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 
 import ChartBuilderItem from './ChartBuilderItem';
 import ChartBuilderSearch from './ChartBuilderSearch';
+import ChartBuilderModal from './ChartBuilderModal';
 
 import update from 'immutability-helper';
 
@@ -33,6 +34,8 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
   const [results, setResults ] = useState([])
   const [resultsIndex, setResultsIndex] = useState(0)
   const [searching, setSearching ] = useState(false)
+  const [modalOpen, setModalOpen ] = useState(false)
+  const [searchFocus, setSearchFocus ] = useState(false)
 
   const chartFull = useMemo(() => {
     const firstAvailable = items.findIndex((item:any) => !item.name)
@@ -58,9 +61,17 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
         onMoveUp={handleMoveUp}
         onMoveDown={handleMoveDown}
         onRemove={handleRemove}
+        onEmptyClick={() => setSearchFocus(true)}
       />
     )
   })
+
+  function closeSearch() {
+    setSearching(false);
+    setResultsIndex(0);
+		setResults([]);
+    setSearchFocus(false);
+  }
 
   function handleRemove(i: number) {
     const newItems = update(items, { $splice: [[i, 1, {}]] });
@@ -95,14 +106,20 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setResultsIndex(0);
   }
 
+  function handleSearchClick(i: number) {
+    console.log(i);
+    const newItems = update(items, { $splice: [[insertIndex, 1, results[i]]] });
+    setItems(newItems);
+    setInsertIndex(insertIndex + 1);
+    closeSearch();
+  }
+
   function handleSearchStart() {
     setSearching(true);
   }
 
   function handleSearchStop() {
-    setSearching(false);
-    setResultsIndex(0);
-		setResults([]);
+    closeSearch();
   }
 
   function handleSearchResults(results: any) {
@@ -113,11 +130,11 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setItems(emptyItems);
   }
 
-  function handlePublish(e: any) {
-    e.preventDefault();
+  function saveChart(author: string) {
     const data = {
       type: chart,
-      items:  items.map((d: any) => d.id).join('|')
+      items:  items.map((d: any) => d.id).join('|'),
+      author,
     }
     fetch('http://localhost:4040/charts/new', {
       method: 'POST',
@@ -131,10 +148,20 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     .then(data => history.push(`/chart/${data.insertId}`))
   }
 
+  function handlePublish(author: string) {
+    setModalOpen(false);
+    saveChart(author)
+  }
+
+  function handleSave(e: any) {
+    e.preventDefault();
+    setModalOpen(true);
+  }
+
   return (
     <section className="ChartBuilder escape-header flex flex--guts">
       <div className="container container--small">
-        <form onSubmit={handlePublish} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
+        <form onSubmit={handleSave} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
           {chart === 'albums'
             ? <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Albums Of All Time</h1>
             : <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
@@ -146,11 +173,13 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
               results={results}
               resultsIndex={resultsIndex}
               chartType={chart}
+              focus={searchFocus}
               onSearchNavigate={handleSearchNavigate}
               onSearchStart={handleSearchStart}
               onSearchStop={handleSearchStop}
               onSearchEnter={handleSearchEnter}
               onSearchResults={handleSearchResults}
+              onSearchClick={(i: number) => handleSearchClick(i)}
             />
           </div>
           <div className={`ChartBuilder__form ${chartFull ? 'ChartBuilder__form--done' : ''}`}>
@@ -158,7 +187,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
               {itemsList}
             </ol>
             <footer className="ChartBuilder__footer">
-              <button type="submit" className="btn">Publish</button>
+              <button type="submit" className="btn">Save</button>
               <button
                 className="btn btn--secondary"
                 onClick={reset}>
@@ -180,6 +209,11 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
           </Link>
         }
       </div>
+      <ChartBuilderModal
+        open={modalOpen} 
+        onClose={() => setModalOpen(false)}
+        onPublish={(author: string) => handlePublish(author)}
+      />
     </section>
   );
 }

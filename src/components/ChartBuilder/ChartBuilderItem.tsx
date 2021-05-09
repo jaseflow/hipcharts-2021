@@ -10,6 +10,7 @@ interface ChartBuilderItemProps {
   onMoveUp?: any;
   onMoveDown?: any;
   onRemove?: any;
+  onEmptyClick?: any;
 }
 
 function ChartBuilderItem({
@@ -22,6 +23,7 @@ function ChartBuilderItem({
   onMoveUp,
   onMoveDown,
   onRemove,
+  onEmptyClick,
 }: ChartBuilderItemProps) {
 	const index = order - 1;
 
@@ -61,7 +63,7 @@ function ChartBuilderItem({
             </div>
           </div>
         )
-        : <span className="ChartBuilderItem__empty">Choose {chartType}</span>
+        : <span className="ChartBuilderItem__empty" onClick={onEmptyClick}>Choose {chartType}</span>
       }
     </li>
   );

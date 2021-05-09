@@ -1,6 +1,7 @@
 .ChartItem {
   position: relative;
   padding-bottom: 100%;
+  color: #fff;
 }
 
 .ChartItem__bg {
@@ -20,9 +21,10 @@
   width: 100%;
   height: 50%;
   z-index: 10;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
-  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .ChartItem__name {
@@ -30,10 +32,11 @@
   font-weight: 900;
 }
 
-@media(min-width: 1200px) {
+@media(min-width: 1000px) {
   .ChartItem__name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
+
   .ChartItem:first-child .ChartItem__name {
     font-size: 2rem;
   }

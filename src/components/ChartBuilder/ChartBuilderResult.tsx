@@ -5,14 +5,16 @@ interface ChartBuilderResultProps {
   imageUrl: string;
   result: string;
   selected: boolean;
+  onSelected: any;
 }
 
-function ChartBuilderResult({ id, imageUrl, result, selected }: ChartBuilderResultProps) {
+function ChartBuilderResult({ id, imageUrl, result, selected, onSelected }: ChartBuilderResultProps) {
 
   const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
     <div
+      onClick={onSelected}
       key={`result-${id}`}
       className={`ResultsItem ${selected ? 'ResultsItem--selected' : ''}`}>
       <img 

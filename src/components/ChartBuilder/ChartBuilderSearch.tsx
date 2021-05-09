@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import ChartBuilderResult from './ChartBuilderResult';
 
@@ -8,11 +8,13 @@ interface ChartBuilderSearchProps {
   results?: any[];
   resultsIndex?: number;
   searching?: boolean;
+  focus?: boolean;
   onSearchStart: any;
   onSearchNavigate: any;
   onSearchStop: any;
   onSearchEnter: any;
   onSearchResults: any;
+  onSearchClick: any;
 }
 
 function ChartBuilderSearch(
@@ -24,14 +26,31 @@ function ChartBuilderSearch(
     onSearchEnter,
     onSearchResults,
     onSearchNavigate,
+    onSearchClick,
     results,
     resultsIndex,
     searching,
+    focus,
   } : ChartBuilderSearchProps) {
 
   const [ value, setValue ] = useState('');
 
+  const searchInput = useRef<HTMLInputElement>(null);
+
+  function closeSearch() {
+    onSearchStop();
+    setValue('');
+  }
+
+  function handleSearchClick(i: number) {
+    onSearchClick(i);
+    setValue('');
+  }
+
   function handleKeyDown(e: any) {
+    if (e.keyCode === 27) {
+      closeSearch();
+    }
     if (e.keyCode === 40) {
       onSearchNavigate('down')
     }
@@ -40,8 +59,8 @@ function ChartBuilderSearch(
     }
     if (e.keyCode === 13) {
       e.preventDefault();
-      onSearchEnter(e)
-      setValue('');
+      onSearchEnter();
+      closeSearch();
     }
   }
 
@@ -67,7 +86,12 @@ function ChartBuilderSearch(
           onSearchResults(data)
         })
     }
-  }, [value]) // eslint-disable-line react-hooks/exhaustive-deps
+
+    if (searchInput && focus) {
+      searchInput?.current?.focus();
+    }
+
+  }, [value, focus]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const resultsWithImages = results && results.length > 0 && results.filter((r) => {
     if (r.images.length) {
@@ -87,6 +111,7 @@ function ChartBuilderSearch(
         imageUrl={lastImage.url}
         result={r.name}
         id={r.id}
+        onSelected={() => handleSearchClick(i)}
       />
     )
   })
@@ -99,10 +124,10 @@ function ChartBuilderSearch(
         disabled={disabled}
         data-testid="search"
         placeholder={`Search for ${chartType}`}
-        className="ChartBuilderSearch__input"
+        className="input"
         onChange={(e) => setValue(e.currentTarget.value)}
         onKeyDown={handleKeyDown}
-        onBlur={onSearchStop}
+        ref={searchInput}
         type="input" />
       <i className="fas fa-search ChartBuilderSearch__icon" />
       <div className={`Results ${searching ? 'Results--searching' : ''}`}>
