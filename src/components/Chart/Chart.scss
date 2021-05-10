@@ -9,7 +9,7 @@
 
 .Chart__header {
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 2rem 0;
 }
 
 .Chart__title {
@@ -17,7 +17,9 @@
 }
 
 .Chart__author {
-  font-weight: 500;
+  font-weight: 300;
+  font-size: 2rem;
+  opacity: 0.75;
 }
 
 @media(min-width: 600px) {
@@ -26,6 +28,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-row-gap: 4px;
     grid-column-gap: 4px;
+    height: 60vh;
   }
 
   .ChartItems :nth-child(1) {

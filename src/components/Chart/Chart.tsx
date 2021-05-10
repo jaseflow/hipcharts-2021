@@ -30,13 +30,14 @@ function Chart() {
       })
   },[])
 
-  const itemsList = items.length && items.map((item: any) => {
+  const itemsList = items.length && items.map((item: any, i) => {
     return (
       <ChartItem
         key={item.id}
         name={item.name}
         artist={item.artists && item.artists[0].name}
         link={item.external_urls.spotify}
+        order={i + 1}
         imageUrl={item.images[0].url} />
     )
   })
@@ -59,11 +60,11 @@ function Chart() {
       <div className="container flex flex--column flex--guts Chart__body">
         <header className="Chart__header">
           {chartType === 'albums'
-            ? <h1 className="Chart__title title title--large" data-testid="title">Top 5 Albums Of All Time</h1>
-            : <h1 className="Chart__title title title--large" data-testid="title">Top 5 Rappers Of All Time</h1>
+            ? <h1 className="Chart__title title" data-testid="title">Top 5 Albums Of All Time</h1>
+            : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
           }
           { author.length > 0 &&
-            <h2 className="Chart__author">By <strong>{author}</strong></h2>
+            <h2 className="Chart__author">By {author}</h2>
           }
         </header>
         <div className="ChartItems">

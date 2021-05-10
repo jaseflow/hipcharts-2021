@@ -187,7 +187,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
               {itemsList}
             </ol>
             <footer className="ChartBuilder__footer">
-              <button type="submit" className="btn">Save</button>
+              <button type="submit" className="btn" disabled={!chartFull}>Save</button>
               <button
                 className="btn btn--secondary"
                 onClick={reset}>
