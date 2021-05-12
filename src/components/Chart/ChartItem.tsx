@@ -1,5 +1,7 @@
 import React from 'react';
 
+import spotify from '../../spotify.png';
+
 interface ChartItemProps {
   name: string;
   imageUrl: string;
@@ -14,11 +16,18 @@ function ChartItem({ name, imageUrl, artist, link, order } : ChartItemProps) {
     <a href={link} className="ChartItem" target="_blank" rel="noreferrer">
       <div className="ChartItem__bg" style={{ backgroundImage: `url(${imageUrl})`}}></div>
       <footer className="ChartItem__footer">
-        <div className="flex flex--aligned">
-          <i className="ChartItem__order">{order}</i>
-          <div>
-            <h3 className="ChartItem__name">{name}</h3>
-            { artist && <p>{artist}</p>}
+        <div className="ChartItem__footer-content">
+          <div className="flex flex--aligned">
+            <img src={imageUrl} alt={artist} className="ChartItem__thumb"/>
+            <i className="ChartItem__order">{order}</i>
+            <div>
+              <h3 className="ChartItem__name">{name}</h3>
+              { artist && <p>{artist}</p>}
+            </div>
+          </div>
+          <div className="ChartItem__view">
+            Listen on
+            <img src={spotify} alt="Spotify" className="ChartItem__spotify" />
           </div>
         </div>
       </footer>

@@ -1,7 +1,8 @@
 .ChartItem {
   position: relative;
-  padding-bottom: 100%;
+  padding-bottom: 30%;
   color: #fff;
+  overflow: hidden;
 }
 
 .ChartItem__bg {
@@ -12,6 +13,13 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  opacity: 0.35;
+  transition: opacity 375ms ease;
+}
+
+
+.ChartItem:nth-child(1) .ChartItem__bg {
+  opacity: 0.5;
 }
 
 .ChartItem__footer {
@@ -28,6 +36,11 @@
   flex-direction: column;
 }
 
+.ChartItem__footer-content {
+  position: relative;
+  transition: transform 400ms ease;
+}
+
 .ChartItem__name {
   font-weight: 900;
 }
@@ -39,12 +52,46 @@
   margin-right: 0.75rem;
 }
 
+.ChartItem__thumb {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.8);
+}
+
+.ChartItem__view {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 0.75rem;
+  transition: all 375ms ease;
+  transform: translateZ(0);
+  opacity: 0.9;
+  line-height: 1;
+}
+
+.ChartItem__spotify {
+  width: 90px;
+  margin-right: -0.25rem;
+}
+
+.ChartItem:hover .ChartItem__bg {
+  opacity: 0.75;
+}
+
+.ChartItem:hover .ChartItem__view {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
 @media(min-width: 1000px) {
   .ChartItem__name {
     font-size: 1.25rem;
-  }
-
-  .ChartItem:first-child .ChartItem__name {
-    font-size: 2rem;
   }
 }

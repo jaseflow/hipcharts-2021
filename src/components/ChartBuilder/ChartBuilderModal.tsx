@@ -15,13 +15,17 @@ function ChartBuilderModal({ open, onClose, onPublish } : ChartBuilderModalProps
     onPublish(author);
   }
 
+  function handleClose(e: any) {
+    e.preventDefault();
+    onClose();
+  }
+
   return (
     <div
       className={
         `ChartBuilderModal ${open ? 'ChartBuilderModal--open' : ''}`
       }>
         <div className="ChartBuilderModal__content">
-          <i className="fa fa-remove ChartBuilderModal__close" onClick={onClose}></i>
           <form onSubmit={handlePublish}>
             <label htmlFor="author">Add your name</label>
             <small>This will be displayed as the author of the chart</small>
@@ -36,7 +40,7 @@ function ChartBuilderModal({ open, onClose, onPublish } : ChartBuilderModalProps
             />
             <div className="flex flex--aligned flex--spaced m-t-1">
               <button className="btn flex__full" disabled={author.length <= 0}>Publish</button>
-              <button className="btn btn--text" style={{marginLeft: '1rem'}}>Publish private</button>
+              <button className="btn btn--text" onClick={handleClose} style={{marginLeft: '1rem'}}>Back</button>
             </div>
           </form>
         </div>

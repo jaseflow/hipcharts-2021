@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import logoInline from '../../logo-inline.svg';
+
+import { useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   hidden?: boolean;
 }
 
 function Header({ hidden } : HeaderProps) {
+
+  let location = useLocation();
+
+  const [ctaHidden, setCtaHidden] = useState(true);
+
+  useEffect(() => {
+    if(location.pathname.includes('/chart/')) {
+      setCtaHidden(false)
+    } else if (!ctaHidden) {
+      setCtaHidden(true)
+    }
+  }, [location])
+
   return (
     <header className={`Header ${hidden ? 'Header--hidden' : ''}`}>
-      <Link to="/"><img src={logoInline} className="Header__logo" alt="logo" /></Link>
+      <div className="container Header__container">
+        <Link to="/"><img src={logoInline} className="Header__logo" alt="logo" /></Link>
+        <a href="/create" className="btn btn--secondary" hidden={ctaHidden}>New<span className="hide-mobile">&nbsp;chart</span></a>
+      </div>
     </header>
   );
 }

@@ -59,15 +59,37 @@ function Chart() {
     <section className="escape-header Chart">
       <div className="container flex flex--column flex--guts Chart__body">
         <header className="Chart__header">
-          {chartType === 'albums'
-            ? <h1 className="Chart__title title" data-testid="title">Top 5 Albums Of All Time</h1>
-            : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
-          }
-          { author.length > 0 &&
-            <h2 className="Chart__author">By {author}</h2>
-          }
+          <div className="Chart__titles">
+            {chartType === 'albums'
+              ? <h1 className="Chart__title title" data-testid="title">Top 5 Albums Of All Time</h1>
+              : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
+            }
+            { author.length > 0 &&
+              <h2 className="Chart__author">By {author}</h2>
+            }
+          </div>
+          <ul className="Chart__social">
+            <li>
+              <a href="#" className="btn btn--share btn--facebook">
+                <i className="fab fa-facebook"></i>
+                Share
+              </a>
+            </li>
+            <li>
+              <a href="#" className="btn btn--share btn--twitter">
+                <i className="fab fa-twitter"></i>
+                Tweet
+              </a>
+            </li>
+            <li>
+              <a href="#" className="btn btn--share btn--download">
+                <i className="fa fa-download"></i>
+                Save as image
+              </a>
+            </li>
+          </ul>
         </header>
-        <div className="ChartItems">
+        <div className="ChartItems ChartItems--single">
           {itemsList}
         </div>
       </div>

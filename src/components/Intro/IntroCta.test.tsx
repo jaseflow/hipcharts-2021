@@ -16,7 +16,7 @@ it('renders without crashing', () => {
 
 it('has a link to charts page', () => {
   const history = createMemoryHistory();
-  const url = '/charts';
+  const url = '/create';
 
   render(
     <Router history={history}>

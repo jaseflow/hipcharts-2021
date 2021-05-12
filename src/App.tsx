@@ -61,7 +61,7 @@ function App() {
       <Header hidden={headerHidden} />
       <Switch>
         <Route path="/" exact children={<Intro />} />
-        <Route path="/charts" exact children={<Charts charts={charts} />} />
+        <Route path="/create" exact children={<Charts charts={charts} />} />
         <Route path="/create/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
         <Route path="/chart/:chart" children={<Chart />} />
       </Switch>

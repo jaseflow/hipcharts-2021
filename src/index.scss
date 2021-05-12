@@ -4,13 +4,6 @@
 // shell
 @import "./App.scss";
 
-// components
-@import "components/Header/Header.scss";
-@import "components/Intro/Intro.scss";
-@import "components/Chart/Chart.scss";
-@import "components/Charts/Charts.scss";
-@import "components/ChartBuilder/ChartBuilder.scss";
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,6 +18,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.hide-mobile {
+  display: none;
+}
+
 .btn {
   display: flex;
   align-items: center;
@@ -36,7 +37,7 @@ body {
   font-size: 100%;
   border: 0;
   color: #fff;
-  height: 50px;
+  height: 45px;
   padding: 0 2rem;
   border-radius: $radius;
   box-shadow: 0 1px 1px rgba(0,0,0,0.8);
@@ -56,11 +57,11 @@ body {
 }
 
 .btn--secondary {
-  background: #222;
+  background: #333;
 }
 
 .btn--large {
-  height: 70px;
+  height: 65px;
   font-size: 125%;
   padding: 0 4rem;
 }
@@ -73,7 +74,26 @@ body {
 .btn--text {
   background: none;
   box-shadow: none;
-  color: $blue;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.btn--share i {
+  margin-right: 0.5rem;
+}
+
+.btn--facebook {
+  background: #3b5998;
+}
+
+.btn--twitter {
+  background: #1da1f2;
+}
+
+.btn--download {
+  background: #eee;
+  color: #222;
+  text-shadow: none;
 }
 
 h1 {
@@ -88,6 +108,8 @@ h1 {
 .container {
   padding: 2rem;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .container--small {
@@ -97,7 +119,7 @@ h1 {
 .title {
   font-family: sans-serif;
   letter-spacing: -1px;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
 }
 
 .title__small {
@@ -171,7 +193,17 @@ label {
 
 @media(min-width: 1024px) {
   .title--large {
-    font-size: 3.75rem;
+    font-size: 3rem;
+  }
+
+  .hide-mobile {
+    display: block !important;
   }
 }
 
+// components
+@import "components/Header/Header.scss";
+@import "components/Intro/Intro.scss";
+@import "components/Chart/Chart.scss";
+@import "components/Charts/Charts.scss";
+@import "components/ChartBuilder/ChartBuilder.scss";
