@@ -25,12 +25,12 @@ function ChartItem({ name, imageUrl, artist, link, order } : ChartItemProps) {
               { artist && <p>{artist}</p>}
             </div>
           </div>
-          <div className="ChartItem__view">
-            Listen on
-            <img src={spotify} alt="Spotify" className="ChartItem__spotify" />
-          </div>
         </div>
       </footer>
+      <div className="ChartItem__view">
+        Listen on
+        <img src={spotify} alt="Spotify" className="ChartItem__spotify" />
+      </div>
     </a>
   );
 }

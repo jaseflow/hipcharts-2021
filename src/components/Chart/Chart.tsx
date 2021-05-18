@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import ChartItem from './ChartItem';
 
@@ -21,6 +21,7 @@ function Chart() {
         const ids = chart.items;
         setChartType(chart.type);
         setAuthor(chart.author);
+        setLoading(true)
         fetch(`http://localhost:4040/${chart.type}?ids=${ids}`)
           .then(response => response.json())
           .then((data) => {
@@ -28,7 +29,7 @@ function Chart() {
             setLoading(false);
           })
       })
-  },[])
+  },[chart])
 
   const itemsList = items.length && items.map((item: any, i) => {
     return (
@@ -89,9 +90,18 @@ function Chart() {
             </li>
           </ul>
         </header>
-        <div className="ChartItems ChartItems--single">
-          {itemsList}
-        </div>
+        {itemsList && itemsList.length > 0
+          ? (
+            <div className="ChartItems ChartItems--single">
+              {itemsList}
+            </div>
+          )
+          : <h1 className="Chart__empty">No items&hellip; weird.</h1>
+        }
+        <footer className="Chart__footer">
+          <Link to={`/chart/${parseInt(chart) - 1}`} className="btn btn--secondary">Previous</Link>
+          <Link to={`/chart/${parseInt(chart) + 1}`} className="btn btn--secondary">Next</Link>
+        </footer>
       </div>
     </section>
   );

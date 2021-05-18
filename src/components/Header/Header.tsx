@@ -28,7 +28,7 @@ function Header({ hidden } : HeaderProps) {
     <header className={`Header ${hidden ? 'Header--hidden' : ''}`}>
       <div className="container Header__container">
         <Link to="/"><img src={logoInline} className="Header__logo" alt="logo" /></Link>
-        <a href="/create" className="btn btn--secondary" hidden={ctaHidden}>New<span className="hide-mobile">&nbsp;chart</span></a>
+        <a href="/create" className="btn btn--secondary" hidden={ctaHidden}>Create<span className="hide-mobile">&nbsp;chart</span></a>
       </div>
     </header>
   );
