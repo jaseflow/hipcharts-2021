@@ -56,8 +56,11 @@ function Chart() {
     )
   }
 
+  const heroImage = items.length && items[0].images[0].url;
+
   return (
     <section className="escape-header Chart">
+      <div className="Chart__bg" style={{backgroundImage: `url(${heroImage})`}}></div>
       <div className="container flex flex--column flex--guts Chart__body">
         <header className="Chart__header">
           <div className="Chart__titles">
@@ -85,7 +88,7 @@ function Chart() {
             <li>
               <a href="#" className="btn btn--share btn--download">
                 <i className="fa fa-download"></i>
-                Save as image
+                Save image
               </a>
             </li>
           </ul>
@@ -99,8 +102,16 @@ function Chart() {
           : <h1 className="Chart__empty">No items&hellip; weird.</h1>
         }
         <footer className="Chart__footer">
-          <Link to={`/chart/${parseInt(chart) - 1}`} className="btn btn--secondary">Previous</Link>
-          <Link to={`/chart/${parseInt(chart) + 1}`} className="btn btn--secondary">Next</Link>
+          <Link to={`/chart/${parseInt(chart) - 1}`}
+            className="btn btn--secondary btn--floating">
+            <i className="fa fa-chevron-left m-r-1"></i>
+            Previous
+          </Link>
+          <Link to={`/chart/${parseInt(chart) + 1}`}
+            className="btn btn--secondary btn--floating">
+            Next
+            <i className="fa fa-chevron-right m-l-1"></i>
+          </Link>
         </footer>
       </div>
     </section>

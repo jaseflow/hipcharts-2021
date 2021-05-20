@@ -3,9 +3,20 @@
 .ChartItems {
   width: 100%;
   display: grid;
-  grid-row-gap: 1rem;
+  grid-gap: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+.Chart__bg {
+  background-image: url("https://i.scdn.co/image/1fc2f537d678d701d7d143a8fd4f0c2f29fbde22");
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  opacity: 0.05;
 }
 
 @keyframes fadeIn {
@@ -44,6 +55,14 @@
 
 .Chart__social {
   list-style: none;
+}
+
+.Chart__footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 @media(max-width: 999px) {
@@ -89,14 +108,17 @@
   .Chart__social li {
     margin-left: 0.5rem;
   }
-}
 
-.Chart__footer {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  .Chart__footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    justify-content: space-between;
+    z-index: 50;
+    width: 100%;
+    padding: 2rem;
+  }
 }
 
 .ChartSpinner {

@@ -1,0 +1,48 @@
+@import "../ChartTile/ChartTile.scss";
+
+@keyframes showChartOptions {
+  0% {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ChartOptions {
+  padding-top: 2rem;
+  overflow: hidden;
+}
+
+.ChartOptions__body {
+  opacity: 0;
+  transform: translateY(2rem);
+  animation: showChartOptions 375ms 200ms ease forwards;
+}
+
+.ChartOptions__list {
+  width: 100%;
+}
+
+.ChartOptions__title {
+  text-align: center;
+}
+
+@media(min-width: 600px) {
+
+  .ChartOptions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ChartOptions__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+    max-width: 768px;
+  }
+
+}

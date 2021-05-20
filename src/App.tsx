@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
 import Chart from './components/Chart/Chart';
 import Charts from './components/Charts/Charts';
+import ChartOptions from './components/ChartOptions/ChartOptions';
 import ChartBuilder from './components/ChartBuilder/ChartBuilder';
 
 import {
@@ -61,9 +62,10 @@ function App() {
       <Header hidden={headerHidden} />
       <Switch>
         <Route path="/" exact children={<Intro />} />
-        <Route path="/create" exact children={<Charts charts={charts} />} />
+        <Route path="/create" exact children={<ChartOptions charts={charts} />} />
         <Route path="/create/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
         <Route path="/chart/:chart" children={<Chart />} />
+        <Route path="/charts" children={<Charts />} />
       </Switch>
     </div>
   );
