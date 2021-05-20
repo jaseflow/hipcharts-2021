@@ -29,7 +29,6 @@ function Charts() {
     fetch(`http://localhost:4040/charts/all`)
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
         setArtistCharts(data.data.artists)
         setAlbumCharts(data.data.albums)
       })
@@ -40,11 +39,17 @@ function Charts() {
       <div className="Charts">
         <div className="container">
           <div className="Charts__container">
-            <div className="Charts__list">
-              {albumsList}
+            <div>
+              <h2>Top 5 Albums Of All Time</h2>
+              <div className="Charts__list">
+                {albumsList}
+              </div>
             </div>
-            <div className="Charts__list">
-              {artistsList}
+            <div>
+              <h2>Top 5 Artists Of All Time</h2>
+              <div className="Charts__list">
+                {artistsList}
+              </div>
             </div>
           </div>
         </div>

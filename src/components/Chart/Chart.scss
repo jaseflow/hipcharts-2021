@@ -17,6 +17,7 @@
   bottom: 0;
   background-size: cover;
   opacity: 0.05;
+  filter: blur(10px);
 }
 
 @keyframes fadeIn {
