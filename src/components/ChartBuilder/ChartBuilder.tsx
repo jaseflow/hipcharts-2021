@@ -126,7 +126,8 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setResults(results);
   }
 
-  function reset() {
+  function reset(e) {
+    e.preventDefault();
     setItems(emptyItems);
   }
 

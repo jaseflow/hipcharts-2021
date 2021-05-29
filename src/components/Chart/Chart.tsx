@@ -9,6 +9,7 @@ function Chart() {
   const [chartType, setChartType] = useState('')
   const [author, setAuthor] = useState('')
   const [items, setItems] = useState([]);
+  const [heroImage, setHeroImage] = useState('');
   const [loading, setLoading] = useState(true);
 
   let { chart } = useParams<{ chart: string }>();
@@ -26,6 +27,7 @@ function Chart() {
           .then(response => response.json())
           .then((data) => {
             setItems(data);
+            setHeroImage(data[0].images[0].url)
             setLoading(false);
           })
       })
@@ -55,8 +57,6 @@ function Chart() {
       </div>
     )
   }
-
-  const heroImage = items.length && items[0].images[0].url;
 
   return (
     <section className="escape-header Chart">
