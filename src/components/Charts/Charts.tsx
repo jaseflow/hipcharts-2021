@@ -26,7 +26,7 @@ function Charts() {
   })
 
   useEffect(() => {
-    fetch(`http://localhost:4040/charts/all`)
+    fetch(`${process.env.REACT_APP_API_URL}/charts/all`)
       .then(response => response.json())
       .then((data) => {
         setArtistCharts(data.data.artists)

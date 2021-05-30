@@ -15,7 +15,7 @@ function Chart() {
   let { chart } = useParams<{ chart: string }>();
 
   useEffect(() => {
-    fetch(`http://localhost:4040/chart/${chart}`)
+    fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`)
       .then(response => response.json())
       .then((data) => {
         const chart = data.data[0];
@@ -23,7 +23,7 @@ function Chart() {
         setChartType(chart.type);
         setAuthor(chart.author);
         setLoading(true)
-        fetch(`http://localhost:4040/${chart.type}?ids=${ids}`)
+        fetch(`${process.env.REACT_APP_API_URL}/${chart.type}?ids=${ids}`)
           .then(response => response.json())
           .then((data) => {
             setItems(data);
@@ -69,29 +69,14 @@ function Chart() {
               : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
             }
             { author.length > 0 &&
-              <h2 className="Chart__author">By {author}</h2>
+            <h2 className="Chart__author">By <span>{author}</span></h2>
             }
           </div>
-          <ul className="Chart__social">
-            <li>
-              <a href="#" className="btn btn--share btn--facebook">
-                <i className="fab fa-facebook"></i>
-                Share
-              </a>
-            </li>
-            <li>
-              <a href="#" className="btn btn--share btn--twitter">
-                <i className="fab fa-twitter"></i>
-                Tweet
-              </a>
-            </li>
-            <li>
-              <a href="#" className="btn btn--share btn--download">
-                <i className="fa fa-download"></i>
-                Save image
-              </a>
-            </li>
-          </ul>
+          <button className="btn btn--cosign">
+            <span>254</span>
+            Co-Signs
+            <i className="fa fa-signature"></i>
+          </button>
         </header>
         {itemsList && itemsList.length > 0
           ? (
@@ -101,6 +86,26 @@ function Chart() {
           )
           : <h1 className="Chart__empty">No items&hellip; weird.</h1>
         }
+        <ul className="Chart__social">
+          <li>
+            <a href="#" className="btn btn--share btn--facebook">
+              <i className="fab fa-facebook"></i>
+              Share
+            </a>
+          </li>
+          <li>
+            <a href="#" className="btn btn--share btn--twitter">
+              <i className="fab fa-twitter"></i>
+              Tweet
+            </a>
+          </li>
+          <li>
+            <a href="#" className="btn btn--share btn--download">
+              <i className="fa fa-download"></i>
+              Save as image
+            </a>
+          </li>
+        </ul>
         <footer className="Chart__footer">
           <Link to={`/chart/${parseInt(chart) - 1}`}
             className="btn btn--secondary btn--floating">

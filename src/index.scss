@@ -44,7 +44,7 @@ body {
   text-shadow: 0 1px 1px rgba(0,0,0,0.5);
   cursor: pointer;
   opacity: 0.9;
-  transition: opacity 375ms ease;
+  transition: all 375ms ease;
 }
 
 .btn:hover {
@@ -80,6 +80,13 @@ body {
   box-shadow: none;
   color: #fff;
   opacity: 0.8;
+  &:hover {
+    background: rgba(0,0,0,0.1);
+  }
+}
+
+.btn--share {
+  height: 36px;
 }
 
 .btn--share i {
@@ -98,6 +105,28 @@ body {
   background: #fff;
   color: #222;
   text-shadow: none;
+}
+
+.btn--cosign {
+  position: relative;
+  padding: 0 1.5rem;
+  padding-right: calc(1rem + 50px);
+  border: 1px solid #fff;
+  background: none;
+  span { margin-right: 0.25rem; font-weight: 900 }
+  i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    line-height: 44px;
+    width: 44px;
+    border-left: 1px solid #fff;
+  }
+  &:hover {
+    background: #222;
+  }
 }
 
 h1 {

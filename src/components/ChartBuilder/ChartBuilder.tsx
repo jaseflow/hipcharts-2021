@@ -126,7 +126,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setResults(results);
   }
 
-  function reset(e) {
+  function reset(e: any) {
     e.preventDefault();
     setItems(emptyItems);
   }
@@ -137,7 +137,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
       items:  items.map((d: any) => d.id).join('|'),
       author,
     }
-    fetch('http://localhost:4040/charts/new', {
+    fetch(`${process.env.REACT_APP_API_URL}/charts/new`, {
       method: 'POST',
       mode: 'cors',
       headers: {
