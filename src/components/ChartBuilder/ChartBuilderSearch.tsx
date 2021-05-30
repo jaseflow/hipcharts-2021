@@ -80,7 +80,7 @@ function ChartBuilderSearch(
 
     if (value) {
       onSearchStart();
-      fetch(`/${process.env.REACT_APP_API_URL}/search/${realChartType}?${query}=${value}`)
+      fetch(`${process.env.REACT_APP_API_URL}/search/${realChartType}?${query}=${value}`)
         .then(response => response.json())
         .then((data) => {
           onSearchResults(data)
