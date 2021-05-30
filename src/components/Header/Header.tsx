@@ -22,7 +22,7 @@ function Header({ hidden } : HeaderProps) {
     } else if (!ctaHidden) {
       setCtaHidden(true)
     }
-  }, [location])
+  }, [location, ctaHidden])
 
   return (
     <header className={`Header ${hidden ? 'Header--hidden' : ''}`}>

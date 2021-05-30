@@ -88,22 +88,22 @@ function Chart() {
         }
         <ul className="Chart__social">
           <li>
-            <a href="#" className="btn btn--share btn--facebook">
+            <span className="btn btn--share btn--facebook">
               <i className="fab fa-facebook"></i>
               Share
-            </a>
+            </span>
           </li>
           <li>
-            <a href="#" className="btn btn--share btn--twitter">
+            <span className="btn btn--share btn--twitter">
               <i className="fab fa-twitter"></i>
               Tweet
-            </a>
+            </span>
           </li>
           <li>
-            <a href="#" className="btn btn--share btn--download">
+            <span className="btn btn--share btn--download">
               <i className="fa fa-download"></i>
               Save as image
-            </a>
+            </span>
           </li>
         </ul>
         <footer className="Chart__footer">

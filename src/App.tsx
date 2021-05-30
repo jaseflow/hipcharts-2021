@@ -55,7 +55,7 @@ function App() {
     setTimeout(() => {
       setRefreshingChart(false)
     }, 600)
-  }, [headerHidden, location])
+  }, [headerHidden, location, prevLocation])
 
   return (
     <div className="App">
