@@ -15,7 +15,7 @@ function Chart() {
   let { chart } = useParams<{ chart: string }>();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`)
+    fetch(`/${process.env.REACT_APP_API_URL}/chart/${chart}`)
       .then(response => response.json())
       .then((data) => {
         const chart = data.data[0];
@@ -23,7 +23,7 @@ function Chart() {
         setChartType(chart.type);
         setAuthor(chart.author);
         setLoading(true)
-        fetch(`${process.env.REACT_APP_API_URL}/${chart.type}?ids=${ids}`)
+        fetch(`/${process.env.REACT_APP_API_URL}/${chart.type}?ids=${ids}`)
           .then(response => response.json())
           .then((data) => {
             setItems(data);
