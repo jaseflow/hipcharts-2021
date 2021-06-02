@@ -64,7 +64,7 @@ function App() {
         <Route path="/" exact children={<Intro />} />
         <Route path="/create" exact children={<ChartOptions charts={charts} />} />
         <Route path="/create/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
-        <Route path="/chart/:chart" children={<Chart />} />
+        <Route path="/chart" children={<Chart />} />
         <Route path="/charts" children={<Charts />} />
       </Switch>
     </div>

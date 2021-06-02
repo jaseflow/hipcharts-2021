@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import ChartItem from './ChartItem';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function Chart() {
 
@@ -12,10 +16,10 @@ function Chart() {
   const [heroImage, setHeroImage] = useState('');
   const [loading, setLoading] = useState(true);
 
-  let { chart } = useParams<{ chart: string }>();
+  let chart = useQuery();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`)
+    fetch(`${process.env.REACT_APP_API_URL}/chart/${chart.get('c')}`)
       .then(response => response.json())
       .then((data) => {
         const chart = data.data[0];
@@ -31,7 +35,7 @@ function Chart() {
             setLoading(false);
           })
       })
-  },[chart])
+  },[])
 
   const itemsList = items.length && items.map((item: any, i) => {
     return (
@@ -107,12 +111,12 @@ function Chart() {
           </li>
         </ul>
         <footer className="Chart__footer">
-          <Link to={`/chart/${parseInt(chart) - 1}`}
+          <Link to={`/chart/1`}
             className="btn btn--secondary btn--floating">
             <i className="fa fa-chevron-left m-r-1"></i>
             Previous
           </Link>
-          <Link to={`/chart/${parseInt(chart) + 1}`}
+          <Link to={`/chart/2`}
             className="btn btn--secondary btn--floating">
             Next
             <i className="fa fa-chevron-right m-l-1"></i>

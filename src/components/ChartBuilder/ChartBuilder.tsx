@@ -146,7 +146,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
       body: JSON.stringify(data),
     })
     .then(response => response.json())
-    .then(data => history.push(`/chart/${data.insertId}`))
+    .then(data => history.push(`/chart?c=${data.insertId}`))
   }
 
   function handlePublish(author: string) {
