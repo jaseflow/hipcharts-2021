@@ -133,9 +133,9 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   function saveChart(author: string) {
     const data = {
-      type: chart,
-      items:  items.map((d: any) => d.id).join('|'),
-      author,
+      "type": chart,
+      "items":  items.map((d: any) => d.id).join('|'),
+      "author": author,
     }
     fetch(`${process.env.REACT_APP_API_URL}/charts/new`, {
       method: 'POST',
