@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+// polyfill URLSearchparams - https://www.npmjs.com/package/url-search-params-polyfill
+import 'url-search-params-polyfill';
+
 import { Link, useLocation } from "react-router-dom";
 
 import ChartItem from './ChartItem';
