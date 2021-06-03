@@ -21,7 +21,6 @@ function Chart() {
 
   let chart = useQuery();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/chart/${chart.get('c')}`)
       .then(response => response.json())
@@ -39,6 +38,7 @@ function Chart() {
             setLoading(false);
           })
       })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const itemsList = items.length && items.map((item: any, i) => {
