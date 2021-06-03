@@ -139,7 +139,6 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     }
     fetch(`${process.env.REACT_APP_API_URL}/charts/new`, {
       method: 'POST',
-      mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
       },
