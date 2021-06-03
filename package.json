@@ -26,6 +26,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "reactSnapshot": {
+    "include": [
+      "/chart"
+    ],
+    "snapshotDelay": 300
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
