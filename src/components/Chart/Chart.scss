@@ -1,5 +1,60 @@
 @import "./ChartItem.scss";
 
+.Cosigns {
+  position: relative;
+  padding: 0 1.5rem;
+  padding-right: calc(1rem + 50px);
+  border: 1px solid #fff;
+  background: none;
+  span { margin-right: 0.25rem; font-weight: 900 }
+  &:hover {
+    background: #222;
+    .Cosigns__sig {
+      transform: translateY(100%);
+    }
+    .Cosigns__plus {
+      transform: translateY(0);
+    }
+  }
+}
+
+.Cosigns__actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  width: 44px;
+  border-left: 1px solid #fff;
+  overflow: hidden;
+  i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 44px;
+    transition: all 375ms ease;
+  }
+}
+
+.Cosigns__plus,
+.Cosigns__minus {
+  transform: translateY(100%);
+}
+
+.Cosigns--signed:hover {
+  .Cosigns__minus {
+    transform: translateY(0);
+  }
+  .Cosigns__plus {
+    transform: translateY(100%);
+  }
+  .Cosigns__sig {
+    transform: translateY(100%);
+  }
+}
+
 .ChartItems {
   width: 100%;
   display: grid;

@@ -9,8 +9,10 @@ import ChartItem from './ChartItem';
 
 function Chart() {
 
-  const [chartType, setChartType] = useState('')
-  const [author, setAuthor] = useState('')
+  const [chartType, setChartType] = useState('');
+  const [author, setAuthor] = useState('');
+  const [cosigns, setCosigns] = useState(0);
+  const [cosigned, setCosigned] = useState(false);
   const [items, setItems] = useState([]);
   const [heroImage, setHeroImage] = useState('');
   const [loading, setLoading] = useState(true);
@@ -64,6 +66,16 @@ function Chart() {
     )
   }
 
+  function handleCosign() {
+    if (cosigned) {
+      setCosigns(cosigns - 1);
+      setCosigned(false)
+    } else {
+      setCosigns(cosigns + 1);
+      setCosigned(true)
+    }
+  }
+
   return (
     <section className="escape-header Chart">
       <div className="Chart__bg" style={{backgroundImage: `url(${heroImage})`}}></div>
@@ -75,13 +87,19 @@ function Chart() {
               : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
             }
             { author.length > 0 &&
-            <h2 className="Chart__author">By <span>{author}</span></h2>
+              <h2 className="Chart__author">By <span>{author}</span></h2>
             }
           </div>
-          <button className="btn btn--cosign">
-            <span>254</span>
+          <button
+            className={`btn btn--cosign Cosigns ${cosigned ? 'Cosigns--signed' : ''}`}
+            onClick={handleCosign}>
+            <span>{cosigns}</span>
             Co-Signs
-            <i className="fa fa-signature"></i>
+            <div className="Cosigns__actions">
+              <i className="fa fa-signature Cosigns__sig"></i>
+              <i className="fa fa-plus Cosigns__plus"></i>
+              <i className="fa fa-minus Cosigns__minus"></i>
+            </div>
           </button>
         </header>
         {itemsList && itemsList.length > 0
