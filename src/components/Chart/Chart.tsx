@@ -27,6 +27,7 @@ function Chart() {
       .then((data) => {
         const chart = data.data[0];
         const ids = chart.items;
+        setCosigns(chart.cosigns || 0);
         setChartType(chart.type);
         setAuthor(chart.author);
         setLoading(true)
@@ -68,11 +69,31 @@ function Chart() {
 
   function handleCosign() {
     if (cosigned) {
-      setCosigns(cosigns - 1);
+      const newVal = cosigns - 1;
+      setCosigns(newVal);
       setCosigned(false)
+      fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"cosigns": newVal}),
+      }).catch((err) => {
+        console.log(err)
+      })
     } else {
-      setCosigns(cosigns + 1);
+      const newVal = cosigns + 1;
+      setCosigns(newVal);
       setCosigned(true)
+      fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"cosigns": newVal}),
+      }).catch((err) => {
+        console.log(err)
+      })
     }
   }
 
@@ -94,7 +115,7 @@ function Chart() {
             className={`btn btn--cosign Cosigns ${cosigned ? 'Cosigns--signed' : ''}`}
             onClick={handleCosign}>
             <span>{cosigns}</span>
-            Co-Signs
+            Co-Sign{cosigns > 1 && <i>s</i>}
             <div className="Cosigns__actions">
               <i className="fa fa-signature Cosigns__sig"></i>
               <i className="fa fa-plus Cosigns__plus"></i>
