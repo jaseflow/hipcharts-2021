@@ -119,6 +119,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
   }
 
   function handleSearchStop() {
+    setResultsIndex(0);
     closeSearch();
   }
 
