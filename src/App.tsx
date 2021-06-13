@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import ReactGA from 'react-ga';
 
 import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
@@ -44,14 +45,20 @@ function App() {
   const prevLocation = usePrevious(location);
 
   useEffect(() => {
+
+    ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.pageview(location.pathname); // Record a pageview for the given page
+
     if (location.pathname === '/') {
       setHeaderHidden(true)
     } else if (headerHidden) {
       setHeaderHidden(false)
     }
+
     if (prevLocation && prevLocation.pathname.includes('/create/')) {
       setRefreshingChart(true)
     }
+
     setTimeout(() => {
       setRefreshingChart(false)
     }, 600)
