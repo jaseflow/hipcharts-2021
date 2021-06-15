@@ -9,6 +9,16 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.25);
 }
 
+.Header__cta {
+  position: relative;
+  transition: transform 375ms ease;
+  transform: translateY(-150%);
+}
+
+.Header__cta--visible {
+  transform: translateY(0);
+}
+
 .Header__container {
   height: 80px;
   padding: 0 2rem;
