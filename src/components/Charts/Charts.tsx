@@ -33,7 +33,7 @@ function Charts() {
       <div className="Charts">
         {!charts.length ?
           (
-            <div class="Empty flex flex--guts">
+            <div className="Empty flex flex--guts">
               <div className="text-centered flex flex--column flex--guts">
                 <h1 className="Empty__title">No charts</h1>
                 <h2 className="Empty__subtitle">Why not be the first to make one?</h2>
