@@ -8,6 +8,7 @@ import ArtistWall from '../ArtistWall/ArtistWall';
 import logoStacked from '../../logo-stacked.svg';
 
 function Intro() {
+
   return (
     <div>
       <ArtistWall />
