@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import ChartTile from '../ChartTile/ChartTile';
+import IntroCta from '../Intro/IntroCta';
 
 function Charts() {
 
@@ -30,11 +31,23 @@ function Charts() {
   return (
     <section className="escape-header">
       <div className="Charts">
-        <div className="container">
-          <div className="Charts__list">
-            {chartsList}
+        {!charts.length ?
+          (
+            <div class="Empty flex flex--guts">
+              <div className="text-centered flex flex--column flex--guts">
+                <h1 className="Empty__title">No charts</h1>
+                <h2 className="Empty__subtitle">Why not be the first to make one?</h2>
+                <IntroCta small={true} />
+              </div>
+            </div>
+          )
+          :
+          <div className="container">
+            <div className="Charts__list">
+              {chartsList}
+            </div>
           </div>
-        </div>
+        }
       </div>
     </section>
   );

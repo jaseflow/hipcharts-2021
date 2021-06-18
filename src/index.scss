@@ -18,8 +18,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fullscreen {
+  height: 100vh;
+}
+
 img {
   max-width: 100%;
+}
+
+.text-centered {
+  text-align: center;
 }
 
 [hidden] {
@@ -118,6 +126,7 @@ h1 {
 .escape-header {
   min-height: 100vh;
   padding-top: $headerHeight;
+  width: 100%;
 }
 
 .container {
@@ -171,7 +180,8 @@ label {
 }
 
 .flex__full {
-  flex: 1; }
+  flex: 1;
+}
 
 .flex--column {
   flex-direction: column;

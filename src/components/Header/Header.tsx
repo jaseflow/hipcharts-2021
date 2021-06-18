@@ -17,7 +17,6 @@ function Header({ hidden } : HeaderProps) {
   const [ctaHidden, setCtaHidden] = useState(true);
 
   useEffect(() => {
-    console.log(location.pathname);
     if(location.pathname.includes('/create/')) {
       setCtaHidden(true)
     } else {

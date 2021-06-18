@@ -2,9 +2,13 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-function IntroCta() {
+interface IntroCtaProps {
+  small?: boolean;
+}
+
+function IntroCta({ small }: IntroCtaProps) {
   return (
-    <Link to="/create" data-testid="cta" className="btn btn--large">Create a chart</Link>
+    <Link to="/create" data-testid="cta" className={`btn ${!small ? 'btn--large' : ''}`}>Create a chart</Link>
   );
 }
 
