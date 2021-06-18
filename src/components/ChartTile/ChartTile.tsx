@@ -7,6 +7,8 @@ interface ChartTileProps {
   title: string;
   subTitle: string;
   imageUrl: string;
+  link?: string;
+  small?: boolean;
 }
 
 function ChartTile(
@@ -15,14 +17,16 @@ function ChartTile(
     title,
     subTitle,
     imageUrl,
+    link,
+    small,
   }: ChartTileProps) {
 
   return (
-    <Link to={`/create/${id}`} className="ChartTile" style={{ backgroundImage: `url(${imageUrl})`}}>
+    <Link to={link ? link : `/chart?c=${id}`} className={`ChartTile ${small ? 'ChartTile--small' : ''}`} style={{ backgroundImage: `url(${imageUrl})`}}>
       <footer className="ChartTile__footer">
         <h3 className="ChartTile__title">
-          Top 5 {title} 
-          <small className="ChartTile__subtitle">Of All Time</small>
+          {title} 
+          <small className="ChartTile__subtitle">{subTitle}</small>
         </h3>
       </footer>
     </Link>

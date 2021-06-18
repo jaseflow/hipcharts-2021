@@ -17,13 +17,17 @@ import {
 const charts = [
   {
     id: 'artists',
-    title: 'Rappers',
+    title: 'Top 5 Rappers',
+    subTitle: 'Of All Time',
     imageUrl: 'https://i.scdn.co/image/5c8d57d92825466637905f0d4219064cb39333e9',
+    link: '/create/artists',
   },
   {
     id: 'albums',
-    title: 'Albums',
+    title: 'Top 5 Albums',
+    subTitle: 'Of All Time',
     imageUrl: 'https://i.scdn.co/image/ab67616d0000b273557341c7755b44dc1a838f1c',
+    link: '/create/albums',
   }
 ]
 
