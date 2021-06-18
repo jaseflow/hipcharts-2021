@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import ChartTile from '../ChartTile/ChartTile';
+
 import { Link } from 'react-router-dom';
 
 function Charts() {
@@ -8,10 +10,14 @@ function Charts() {
 
   const chartsList = charts && charts.map((chart: any) => {
     return (
-      <Link className="Charts__tile" to={`/chart?c=${chart.id}`} key={`chart-${chart.id}`}>
-        <h4>{chart.author}</h4>
-        <img src={chart.montage} alt={`${chart.author}'s chart`}/>
-      </Link>
+      <ChartTile
+        key={`chart-${chart.id}`}
+        id={chart.id}
+        title={`${chart.author}'s`}
+        subTitle={`Top 5 ${chart.type}`}
+        imageUrl={chart.montage}
+        small={true}
+      />
     )
   })
 

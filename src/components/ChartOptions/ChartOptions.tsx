@@ -16,6 +16,7 @@ function ChartOptions({ charts }: ChartOptionsProps) {
         title={chart.title}
         subTitle={chart.subTitle}
         imageUrl={chart.imageUrl}
+        link={chart.link}
       />
     )
   })

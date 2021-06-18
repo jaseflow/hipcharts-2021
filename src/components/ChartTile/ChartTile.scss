@@ -48,3 +48,8 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   }
 }
+
+.ChartTile--small {
+  .ChartTile__title { font-size: 1.5rem; }
+  .ChartTile__subtitle { font-size: 1.25rem; }
+}
