@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import ChartTile from '../ChartTile/ChartTile';
 
-import { Link } from 'react-router-dom';
-
 function Charts() {
 
   const [charts, setCharts] = useState([])
