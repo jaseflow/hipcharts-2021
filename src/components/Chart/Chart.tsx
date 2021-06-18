@@ -141,18 +141,6 @@ function Chart() {
             </a>
           </li>
         </ul>
-        <footer className="Chart__footer">
-          <Link to={`/chart?c=${parseInt(chart) - 1}`}
-            className="btn btn--secondary btn--floating">
-            <i className="fa fa-chevron-left m-r-1"></i>
-            Previous
-          </Link>
-          <Link to={`/chart?c=${parseInt(chart) + 1}`}
-            className="btn btn--secondary btn--floating">
-            Next
-            <i className="fa fa-chevron-right m-l-1"></i>
-          </Link>
-        </footer>
       </div>
     </section>
   );
