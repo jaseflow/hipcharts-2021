@@ -13,7 +13,7 @@ function Charts() {
         key={`chart-${chart.id}`}
         id={chart.id}
         title={`${chart.author}'s`}
-        subTitle={`Top 5 ${chart.type}`}
+        subTitle={`Top 5 ${chart.type} Of All Time`}
         imageUrl={chart.montage}
         small={true}
       />
