@@ -11,6 +11,7 @@ function Chart() {
 
   const [chartType, setChartType] = useState('');
   const [author, setAuthor] = useState('');
+  const [montage, setMontage] = useState('');
   const [cosigns, setCosigns] = useState(0);
   const [cosigned, setCosigned] = useState(false);
   const [items, setItems] = useState([]);
@@ -30,6 +31,7 @@ function Chart() {
         setCosigns(chart.cosigns || 0);
         setChartType(chart.type);
         setAuthor(chart.author);
+				setMontage(chart.montage);
         setLoading(true)
         fetch(`${process.env.REACT_APP_API_URL}/${chart.type}?ids=${ids}`)
           .then(response => response.json())
