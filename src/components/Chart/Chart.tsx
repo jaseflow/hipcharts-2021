@@ -135,22 +135,10 @@ function Chart() {
         }
         <ul className="Chart__social">
           <li>
-            <span className="btn btn--share btn--facebook">
-              <i className="fab fa-facebook"></i>
-              Share
-            </span>
-          </li>
-          <li>
-            <span className="btn btn--share btn--twitter">
-              <i className="fab fa-twitter"></i>
-              Tweet
-            </span>
-          </li>
-          <li>
-            <span className="btn btn--share btn--download">
+            <a href={montage} className="btn btn--share btn--download">
               <i className="fa fa-download"></i>
               Save as image
-            </span>
+            </a>
           </li>
         </ul>
         <footer className="Chart__footer">
