@@ -4,21 +4,13 @@ import { Link } from 'react-router-dom';
 
 function Charts() {
 
-  const [albumCharts, setAlbumCharts] = useState([])
-  const [artistCharts, setArtistCharts] = useState([])
+  const [charts, setCharts] = useState([])
 
-  const albumsList = albumCharts && albumCharts.map((chart: any) => {
+  const chartsList = charts && charts.map((chart: any) => {
     return (
-      <Link className="Charts__tile" to={`/chart/${chart.id}`}>
+      <Link className="Charts__tile" to={`/chart?c=${chart.id}`} key={`chart-${chart.id}`}>
         <h4>{chart.author}</h4>
-      </Link>
-    )
-  })
-
-  const artistsList = artistCharts && artistCharts.map((chart: any) => {
-    return (
-      <Link className="Charts__tile" to={`/chart/${chart.id}`}>
-        <h4>{chart.author}</h4>
+        <img src={chart.montage} alt={`${chart.author}'s chart`}/>
       </Link>
     )
   })
@@ -27,8 +19,7 @@ function Charts() {
     fetch(`${process.env.REACT_APP_API_URL}/charts/all`)
       .then(response => response.json())
       .then((data) => {
-        setArtistCharts(data.data.artists)
-        setAlbumCharts(data.data.albums)
+        setCharts(data.data)
       })
   },[])
 
@@ -36,19 +27,8 @@ function Charts() {
     <section className="escape-header">
       <div className="Charts">
         <div className="container">
-          <div className="Charts__container">
-            <div>
-              <h2>Top 5 Albums Of All Time</h2>
-              <div className="Charts__list">
-                {albumsList}
-              </div>
-            </div>
-            <div>
-              <h2>Top 5 Artists Of All Time</h2>
-              <div className="Charts__list">
-                {artistsList}
-              </div>
-            </div>
+          <div className="Charts__list">
+            {chartsList}
           </div>
         </div>
       </div>

@@ -45,10 +45,3 @@
     grid-template-columns: repeat(4,1fr);
   }
 }
-
-@media(min-width: 1600px) {
-  .Charts__list {
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-  }
-}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function IntroCta() {
   return (
-    <Link to="/create" data-testid="cta" className="btn btn--large">Get started</Link>
+    <Link to="/create" data-testid="cta" className="btn btn--large">Create a chart</Link>
   );
 }
 
