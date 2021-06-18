@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 // polyfill URLSearchparams - https://www.npmjs.com/package/url-search-params-polyfill
 import 'url-search-params-polyfill';
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+import Spinner from '../Spinner/Spinner';
 
 import ChartItem from './ChartItem';
 
@@ -56,19 +58,6 @@ function Chart() {
     )
   })
 
-  if (loading) {
-    return (
-      <div className="ChartSpinner">
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    )
-  }
-
   function handleCosign() {
     if (cosigned) {
       const newVal = cosigns - 1;
@@ -99,51 +88,67 @@ function Chart() {
     }
   }
 
-  return (
-    <section className="escape-header Chart">
-      <div className="Chart__bg" style={{backgroundImage: `url(${heroImage})`}}></div>
-      <div className="container flex flex--column flex--guts Chart__body">
-        <header className="Chart__header">
-          <div className="Chart__titles">
-            {chartType === 'albums'
-              ? <h1 className="Chart__title title" data-testid="title">Top 5 Albums Of All Time</h1>
-              : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
-            }
-            { author.length > 0 &&
-              <h2 className="Chart__author">By <span>{author}</span></h2>
-            }
-          </div>
-          <button
-            className={`btn btn--cosign Cosigns ${cosigned ? 'Cosigns--signed' : ''}`}
-            onClick={handleCosign}>
-            <span>{cosigns}</span>
-            Co-Sign{cosigns > 1 && <i>s</i>}
-            <div className="Cosigns__actions">
-              <i className="fa fa-signature Cosigns__sig"></i>
-              <i className="fa fa-plus Cosigns__plus"></i>
-              <i className="fa fa-minus Cosigns__minus"></i>
+  if (loading) {
+    return <Spinner />
+  } else {
+    return (
+      <section className="escape-header Chart">
+        <div className="Chart__bg" style={{backgroundImage: `url(${heroImage})`}}></div>
+        <div className="container flex flex--column flex--guts Chart__body">
+          <header className="Chart__header">
+            <div className="Chart__titles">
+              {chartType === 'albums'
+                ? <h1 className="Chart__title title" data-testid="title">Top 5 Albums Of All Time</h1>
+                : <h1 className="Chart__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
+              }
+              { author.length > 0 &&
+                <h2 className="Chart__author">By <span>{author}</span></h2>
+              }
             </div>
-          </button>
-        </header>
-        {itemsList && itemsList.length > 0
-          ? (
-            <div className="ChartItems ChartItems--single">
-              {itemsList}
-            </div>
-          )
-          : <h1 className="Chart__empty">No items&hellip; weird.</h1>
-        }
-        <ul className="Chart__social">
-          <li>
-            <a href={montage} className="btn btn--share btn--download">
-              <i className="fa fa-download"></i>
-              Save as image
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-  );
+            <button
+              className={`btn btn--cosign Cosigns ${cosigned ? 'Cosigns--signed' : ''}`}
+              onClick={handleCosign}>
+              <span>{cosigns}</span>
+              Co-Sign{cosigns > 1 && <i>s</i>}
+              <div className="Cosigns__actions">
+                <i className="fa fa-signature Cosigns__sig"></i>
+                <i className="fa fa-plus Cosigns__plus"></i>
+                <i className="fa fa-minus Cosigns__minus"></i>
+              </div>
+            </button>
+          </header>
+          {itemsList && itemsList.length > 0
+            ? (
+              <div className="ChartItems ChartItems--single">
+                {itemsList}
+              </div>
+            )
+            : <h1 className="Chart__empty">No items&hellip; weird.</h1>
+          }
+          <ul className="Chart__social">
+            <li>
+              <a href={montage} className="btn btn--share btn--download">
+                <i className="fa fa-download"></i>
+                Save as image
+              </a>
+            </li>
+          </ul>
+          <footer className="Chart__footer">
+            <Link to={`/chart?c=${parseInt(chart) - 1}`}
+              className="btn btn--secondary btn--floating">
+              <i className="fa fa-chevron-left m-r-1"></i>
+              Previous
+            </Link>
+            <Link to={`/chart?c=${parseInt(chart) + 1}`}
+              className="btn btn--secondary btn--floating">
+              Next
+              <i className="fa fa-chevron-right m-l-1"></i>
+            </Link>
+          </footer>
+        </div>
+      </section>
+    );
+  }
 }
 
 export default Chart;
