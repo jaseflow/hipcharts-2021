@@ -30,21 +30,28 @@ app.get('/chart', (req,  res) => {
   const filePath = path.resolve(__dirname, './build', 'index.html')
   let montage;
 
+  console.log('1')
+
   return new Promise((resolve, reject) => {
-    request.get(`${process.env.REACT_APP_API_URL}/chart/${id}`, (err, response) => {
+    request.get(`${process.env.API_URL}/chart/${id}`, (err, response) => {
       if (!err && response.statusCode == 200) {
         const body = JSON.parse(response.body)
         montage = body.data[0].montage;
+        console.log('2')
         resolve(montage)
       } else {
         console.log('Error accessing item metadata URL');
       }
     })
   }).then((montage) => {
+    console.log('3')
     fs.readFile(filePath, 'utf8', (err, data) => {
       if(err) {
         return console.log(err)
       }
+
+      console.log('4')
+      console.log(montage)
 
       data = data
         .replace(/__TITLE__/g, 'Home Page')
