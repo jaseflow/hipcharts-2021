@@ -31,7 +31,7 @@ app.get('/chart', (req,  res) => {
   let montage;
 
   return new Promise((resolve, reject) => {
-    request.get(`http://localhost:4040/chart/${id}`, (err, response) => {
+    request.get(`${process.env.REACT_APP_API_URL}/chart/${id}`, (err, response) => {
       if (!err && response.statusCode == 200) {
         const body = JSON.parse(response.body)
         montage = body.data[0].montage;
@@ -40,13 +40,11 @@ app.get('/chart', (req,  res) => {
         console.log('Error accessing item metadata URL');
       }
     })
-  }).then((data) => {
+  }).then((montage) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
       if(err) {
         return console.log(err)
       }
-
-      console.log(montage);
 
       data = data
         .replace(/__TITLE__/g, 'Home Page')
