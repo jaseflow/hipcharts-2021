@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-snapshot';
+import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import ReactGA from 'react-ga';
@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactGA.initialize('UA-45794281-1');
 
-render(
+ReactDOM.render(
   <React.StrictMode>
     <Router>
       <App />
