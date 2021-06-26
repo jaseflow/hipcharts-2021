@@ -5,6 +5,8 @@ import IntroCta from '../Intro/IntroCta';
 
 import Spinner from '../Spinner/Spinner';
 
+import utils from '../../utils';
+
 function Charts() {
 
   const [charts, setCharts] = useState([])
@@ -16,7 +18,7 @@ function Charts() {
         key={`chart-${chart.id}`}
         id={chart.id}
         title={`${chart.author}'s`}
-        subTitle={`Top 5 ${chart.type} Of All Time`}
+        subTitle={`Top 5 ${utils.capitalize(chart.type)} Of All Time`}
         imageUrl={chart.montage}
         small={true}
       />

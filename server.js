@@ -6,9 +6,12 @@ const request = require('request')
 const PORT = process.env.PORT || 5000
 
 const dotenv = require('dotenv')
-dotenv.config();
+dotenv.config()
 
 const app = express()
+
+const defaultTitle = "Hipcharts | What's your top five?"
+const defaultDescription = 'Create, share and discover top five charts of your favourite music and artists.'
 
 app.get('/', (req,  res) => {
   const filePath = path.resolve(__dirname, './build', 'index.html')
@@ -18,8 +21,8 @@ app.get('/', (req,  res) => {
     }
 
     data = data
-      .replace(/__TITLE__/g, 'Home Page')
-      .replace(/__DESCRIPTION__/g, 'Home Page Description');
+      .replace(/__TITLE__/g, defaultTitle)
+      .replace(/__DESCRIPTION__/g, defaultDescription);
 
     res.send(data)
   })
@@ -28,35 +31,32 @@ app.get('/', (req,  res) => {
 app.get('/chart', (req,  res) => {
   const id = req.query.c;
   const filePath = path.resolve(__dirname, './build', 'index.html')
-  let montage;
-
-  console.log('1')
+  let chart;
 
   return new Promise((resolve, reject) => {
     request.get(`${process.env.API_URL}/chart/${id}`, (err, response) => {
       if (!err && response.statusCode == 200) {
         const body = JSON.parse(response.body)
-        montage = body.data[0].montage;
-        console.log('2')
-        resolve(montage)
+        chart = body.data[0];
+        resolve(chart)
       } else {
-        console.log('Error accessing item metadata URL');
+        console.log('Error accessing item metadata URL')
       }
     })
-  }).then((montage) => {
-    console.log('3')
+  }).then((chart) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
       if(err) {
         return console.log(err)
       }
 
-      console.log('4')
-      console.log(montage)
+      // Make it uppercase
+      const capitalizedAuthor = chart.author.charAt(0).toUpperCase() + chart.author.slice(1);
+      const capitalizedType = chart.type.charAt(0).toUpperCase() + chart.type.slice(1);
 
       data = data
-        .replace(/__TITLE__/g, 'Home Page')
-        .replace(/__DESCRIPTION__/g, 'Home Page Description')
-        .replace(/__OGIMAGE__/g, montage);
+        .replace(/__TITLE__/g, `${capitalizedAuthor}'s Top 5 ${capitalizedType} Of All Time`)
+        .replace(/__DESCRIPTION__/g, defaultDescription)
+        .replace(/__OGIMAGE__/g, chart.montage)
 
       res.send(data)
     })
@@ -74,8 +74,8 @@ app.get('/create/:type', (req,  res) => {
     }
 
     data = data
-      .replace(/__TITLE__/g, 'Home Page')
-      .replace(/__DESCRIPTION__/g, 'Home Page Description');
+      .replace(/__TITLE__/g, defaultTitle)
+      .replace(/__DESCRIPTION__/g, defaultDescription)
 
     res.send(data)
   })
@@ -89,8 +89,8 @@ app.get('/charts', (req,  res) => {
     }
 
     data = data
-      .replace(/__TITLE__/g, 'Home Page')
-      .replace(/__DESCRIPTION__/g, 'Home Page Description');
+      .replace(/__TITLE__/g, defaultTitle)
+      .replace(/__DESCRIPTION__/g, defaultDescription)
 
     res.send(data)
   })
