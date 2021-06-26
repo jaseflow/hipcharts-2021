@@ -31,7 +31,8 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   const [items, setItems] = useState(emptyItems)
   const [insertIndex, setInsertIndex] = useState(0)
-  const [results, setResults ] = useState([])
+  const [results, setResults ] = useState<any[]>([])
+  const [selectedIds, setSelectedIds ] = useState<any[]>([])
   const [resultsIndex, setResultsIndex] = useState(0)
   const [searching, setSearching ] = useState(false)
   const [modalOpen, setModalOpen ] = useState(false)
@@ -75,7 +76,10 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   function handleRemove(i: number) {
     const newItems = update(items, { $splice: [[i, 1, {}]] });
+    const newIds = update(selectedIds, { $splice: [[i, 1, {}]] });
+
     setInsertIndex(0);
+    setSelectedIds(newIds);
     setItems(newItems);
   }
 
@@ -101,6 +105,13 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   function handleSearchEnter(e: any) {
     const newItems = update(items, { $splice: [[insertIndex, 1, results[resultsIndex]]] });
+
+    // create array of selected item ids
+    let ids : string[] = [...selectedIds];
+    ids.push(results[resultsIndex].id)
+    console.log(results);
+
+    setSelectedIds(ids);
     setItems(newItems);
     setInsertIndex(insertIndex + 1);
     setResultsIndex(0);
@@ -169,6 +180,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
           }
           <div className="ChartBuilder__search">
             <ChartBuilderSearch
+              selectedIds={selectedIds}
               searching={searching}
               disabled={chartFull}
               results={results}

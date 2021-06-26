@@ -7,6 +7,7 @@ interface ChartBuilderSearchProps {
   disabled: boolean;
   results?: any[];
   resultsIndex?: number;
+  selectedIds: any[];
   searching?: boolean;
   focus?: boolean;
   onSearchStart: any;
@@ -27,6 +28,7 @@ function ChartBuilderSearch(
     onSearchResults,
     onSearchNavigate,
     onSearchClick,
+    selectedIds,
     results,
     resultsIndex,
     searching,
@@ -83,7 +85,15 @@ function ChartBuilderSearch(
       fetch(`${process.env.REACT_APP_API_URL}/search/${realChartType}?${query}=${value}`)
         .then(response => response.json())
         .then((data) => {
-          onSearchResults(data)
+          const filteredResults = data && data.length > 0 && data.filter((r : any) => {
+            const selected = selectedIds.includes(r.id)
+            if (r.images.length && !selected) {
+              return true
+            } else {
+              return false
+            }
+          })
+          onSearchResults(filteredResults)
         })
     }
 
@@ -93,15 +103,7 @@ function ChartBuilderSearch(
 
   }, [value, focus]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const resultsWithImages = results && results.length > 0 && results.filter((r) => {
-    if (r.images.length) {
-      return true
-    } else {
-      return false
-    }
-  })
-
-  const resultsList = resultsWithImages && resultsWithImages.map((r, i) => {
+  const resultsList = results && results.map((r, i) => {
     const lastImage = r.images && r.images[r.images.length - 1]
 
     return (
