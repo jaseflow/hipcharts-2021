@@ -1,5 +1,15 @@
 @import "./ChartItem.scss";
 
+.Chart__socials {
+  .btn {
+    margin-left: 0.5rem;
+  }
+
+  .Cosigns {
+    margin-left: 1.5rem;
+  }
+}
+
 .Cosigns {
   position: relative;
   padding: 0 1.5rem;
@@ -101,7 +111,7 @@
   margin: 2rem 0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .Chart__titles {

@@ -9,6 +9,8 @@ import Spinner from '../Spinner/Spinner';
 
 import ChartItem from './ChartItem';
 
+import { FacebookShareButton, TwitterShareButton } from 'react-share';
+
 function Chart() {
 
   const [chartType, setChartType] = useState('');
@@ -105,17 +107,31 @@ function Chart() {
                 <h2 className="Chart__author">By <span>{author}</span></h2>
               }
             </div>
-            <button
-              className={`btn btn--cosign Cosigns ${cosigned ? 'Cosigns--signed' : ''}`}
-              onClick={handleCosign}>
-              <span>{cosigns}</span>
-              Co-Sign{cosigns > 1 && <i>s</i>}
-              <div className="Cosigns__actions">
-                <i className="fa fa-signature Cosigns__sig"></i>
-                <i className="fa fa-plus Cosigns__plus"></i>
-                <i className="fa fa-minus Cosigns__minus"></i>
-              </div>
-            </button>
+            <nav className="flex flex--aligned Chart__socials">
+              <a href={montage} className="btn btn--share btn--download">
+                <i className="fa fa-download"></i>
+                Save
+              </a>
+              <TwitterShareButton url={window.location.href} className="btn btn--share btn--twitter" resetButtonStyle={false}>
+                <i className="fab fa-twitter"></i>
+                Share
+              </TwitterShareButton>
+              <FacebookShareButton url={window.location.href} className="btn btn--share btn--facebook" resetButtonStyle={false}>
+                <i className="fab fa-facebook"></i>
+                Share
+              </FacebookShareButton>
+              <button
+                className={`btn btn--cosign Cosigns ${cosigned ? 'Cosigns--signed' : ''}`}
+                onClick={handleCosign}>
+                <span>{cosigns}</span>
+                Co-Sign{(cosigns > 1 || cosigns === 0)  && <i>s</i>}
+                <div className="Cosigns__actions">
+                  <i className="fa fa-signature Cosigns__sig"></i>
+                  <i className="fa fa-plus Cosigns__plus"></i>
+                  <i className="fa fa-minus Cosigns__minus"></i>
+                </div>
+              </button>
+            </nav>
           </header>
           {itemsList && itemsList.length > 0
             ? (
@@ -125,14 +141,6 @@ function Chart() {
             )
             : <h1 className="Chart__empty">No items&hellip; weird.</h1>
           }
-          <ul className="Chart__social">
-            <li>
-              <a href={montage} className="btn btn--share btn--download">
-                <i className="fa fa-download"></i>
-                Save as image
-              </a>
-            </li>
-          </ul>
           <footer className="Chart__footer">
             <Link to={`/chart?c=${parseInt(chart) - 1}`}
               className="btn btn--secondary btn--floating">
