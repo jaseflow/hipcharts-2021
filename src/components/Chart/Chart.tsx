@@ -67,7 +67,7 @@ function Chart() {
             <div className="Chart__bg" style={{backgroundImage: `url(${heroImage})`}}></div>
           )
         }
-        <div class="page-container">
+        <div className="page-container">
           <div className="container Chart__body">
             <header className="Chart__header">
               <div className="Chart__titles">
