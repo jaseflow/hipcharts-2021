@@ -2,8 +2,9 @@ $headerHeight: 80px;
 $fullHeightMinusHeader: calc(100vh - #{$headerHeight});
 $radius: 5px;
 
+$darkBlue: #030710;
 $darkGrey: #111;
 $blue: lighten(#06f, 5);
 
-$bg: $darkGrey;
+$bg: $darkBlue;
 

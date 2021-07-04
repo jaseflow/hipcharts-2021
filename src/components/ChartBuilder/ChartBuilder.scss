@@ -9,7 +9,7 @@
 
 .ChartBuilderItem {
   height: 90px;
-  background: #1d1d1d;
+  background: rgba(255,255,255,0.025);
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -17,7 +17,7 @@
   transition: background 375ms ease;
   cursor: pointer;
   &:hover {
-    background: #222;
+    background: rgba(255,255,255,0.05);
   }
 }
 

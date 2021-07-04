@@ -12,7 +12,6 @@
 }
 
 .ChartOptions {
-  padding-top: 2rem;
   overflow: hidden;
 }
 
@@ -23,7 +22,11 @@
 }
 
 .ChartOptions__list {
-  width: 100%;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 0.5rem;
 }
 
 .ChartOptions__title {

@@ -9,6 +9,7 @@ interface ChartTileProps {
   imageUrl: string;
   link?: string;
   small?: boolean;
+  cosigns?: number;
 }
 
 function ChartTile(
@@ -19,15 +20,15 @@ function ChartTile(
     imageUrl,
     link,
     small,
+    cosigns,
   }: ChartTileProps) {
 
   return (
-    <Link to={link ? link : `/chart?c=${id}`} className={`ChartTile ${small ? 'ChartTile--small' : ''}`} style={{ backgroundImage: `url(${imageUrl})`}}>
+    <Link to={link ? link : `/chart?c=${id}`} className={`ChartTile ${small ? 'ChartTile--small' : ''}`}>
+      <div className="ChartTile__cover" style={{ backgroundImage: `url(${imageUrl})`}}></div>
       <footer className="ChartTile__footer">
-        <h3 className="ChartTile__title">
-          {title} 
-          <small className="ChartTile__subtitle">{subTitle}</small>
-        </h3>
+        <h4 className="ChartTile__title">{title}</h4>
+        <h5 className="ChartTile__subtitle">{subTitle}</h5>
       </footer>
     </Link>
   );

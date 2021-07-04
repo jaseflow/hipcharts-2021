@@ -1,6 +1,6 @@
 .ChartItem {
   position: relative;
-  padding-bottom: 30%;
+  padding-bottom: 100%;
   color: #fff;
   overflow: hidden;
   background: #111;
@@ -14,13 +14,13 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0.35;
+  opacity: 0.5;
   transition: opacity 375ms ease;
 }
 
 
 .ChartItem:nth-child(1) .ChartItem__bg {
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .ChartItem__footer {
@@ -44,10 +44,11 @@
 
 .ChartItem__name {
   font-weight: 900;
+  font-size: 0.875rem;
 }
 
 .ChartItem__order {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 900;
   font-style: normal;
   margin-right: 0.75rem;
@@ -76,6 +77,7 @@
   transform: translateZ(0);
   opacity: 0.9;
   line-height: 1;
+  display: none;
 }
 
 .ChartItem__spotify {
@@ -84,7 +86,7 @@
 }
 
 .ChartItem:hover .ChartItem__bg {
-  opacity: 0.75;
+  opacity: 0.95;
 }
 
 .ChartItem:hover .ChartItem__view {

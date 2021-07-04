@@ -21,6 +21,7 @@ function Charts() {
         subTitle={`Top 5 ${utils.capitalize(chart.type)} Of All Time`}
         imageUrl={chart.montage}
         small={true}
+        cosigns={5}
       />
     )
   })
@@ -39,24 +40,29 @@ function Charts() {
   } else {
     return (
       <section className="escape-header">
-        <div className="Charts">
-          {!charts.length ?
-            (
-              <div className="Empty flex flex--guts">
-                <div className="text-centered flex flex--column flex--guts">
-                  <h1 className="Empty__title">No charts</h1>
-                  <h2 className="Empty__subtitle">Why not be the first to make one?</h2>
-                  <IntroCta small={true} />
+        <div className="page-container">
+          <div className="container">
+            <h1 className="title title--large">Browse Charts</h1>
+          </div>
+          <div className="Charts">
+            {!charts.length ?
+              (
+                <div className="Empty flex flex--guts">
+                  <div className="text-centered flex flex--column flex--guts">
+                    <h1 className="Empty__title">No charts</h1>
+                    <h2 className="Empty__subtitle">Why not be the first to make one?</h2>
+                    <IntroCta small={true} />
+                  </div>
+                </div>
+              )
+              :
+              <div className="container">
+                <div className="Charts__list">
+                  {chartsList}
                 </div>
               </div>
-            )
-            :
-            <div className="container">
-              <div className="Charts__list">
-                {chartsList}
-              </div>
-            </div>
-          }
+            }
+          </div>
         </div>
       </section>
     );

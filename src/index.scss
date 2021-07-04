@@ -35,7 +35,15 @@ img {
 }
 
 .hide-mobile {
-  display: none;
+  display: none !important;
+}
+
+.flat {
+  margin-bottom: 0 !important;
+}
+
+.pressed {
+  margin-bottom: 0.5rem !important;
 }
 
 .btn {
@@ -55,12 +63,10 @@ img {
   box-shadow: 0 1px 1px rgba(0,0,0,0.8);
   text-shadow: 0 1px 1px rgba(0,0,0,0.5);
   cursor: pointer;
-  opacity: 0.9;
   transition: all 375ms ease;
-}
-
-.btn:hover {
-  opacity: 1;
+  &:hover  {
+    background: darken($blue, 5);
+  }
 }
 
 .btn[disabled] {
@@ -69,7 +75,10 @@ img {
 }
 
 .btn--secondary {
-  background: #333;
+  background: rgba(255,255,255,0.1);
+  &:hover {
+    background: rgba(255,255,255,0.2);
+  }
 }
 
 .btn--large {
@@ -114,9 +123,12 @@ img {
 }
 
 .btn--download {
-  background: #fff;
+  background: #eee;
   color: #222;
   text-shadow: none;
+  &:hover {
+    background: #fff;
+  }
 }
 
 h1 {
@@ -130,10 +142,16 @@ h1 {
 }
 
 .container {
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.page-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .container--small {
@@ -143,7 +161,17 @@ h1 {
 .title {
   font-family: sans-serif;
   letter-spacing: -1px;
+  font-size: 1.65rem;
+}
+
+.title--large {
   font-size: 2.25rem;
+}
+
+@media(min-width: 1024px) {
+  .title {
+    font-size: 2.25rem;
+  }
 }
 
 .title__small {
@@ -216,13 +244,17 @@ label {
 .m-l-1 { margin-left: 1rem; }
 .m-r-1 { margin-right: 1rem; }
 
-@media(min-width: 1024px) {
+@media(min-width: 768px) {
   .title--large {
     font-size: 3rem;
   }
 
   .hide-mobile {
     display: block !important;
+  }
+
+  .hide-desktop {
+    display: none !important;
   }
 }
 

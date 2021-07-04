@@ -22,8 +22,8 @@ function ChartOptions({ charts }: ChartOptionsProps) {
   })
 
   return (
-    <section className="flex flex--guts escape-header ChartOptions">
-      <div className="container flex flex--column flex--guts ChartOptions__body">
+    <section className="flex flex--guts fullscreen ChartOptions">
+      <div className="container ChartOptions__body">
         <h1 className="ChartOptions__title title title--large">Choose a chart</h1>
         <div className="ChartOptions__list">
           {chartsList}

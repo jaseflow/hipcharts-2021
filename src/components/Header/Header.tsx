@@ -14,24 +14,29 @@ function Header({ hidden } : HeaderProps) {
 
   let location = useLocation();
 
-  const [ctaHidden, setCtaHidden] = useState(true);
+  const [ctaHidden, setCtaHidden] = useState(false);
+  const [transparent, setTransparent] = useState(false);
 
   useEffect(() => {
-    if(location.pathname.includes('/create/')) {
+    if(location.pathname.includes('/create')) {
       setCtaHidden(true)
-    } else {
-      setCtaHidden(false)
+    } else if(location.pathname.includes('/chart') && window.innerWidth > 768) {
+      setTransparent(true)
     }
   }, [location, ctaHidden])
 
   return (
-    <header className={`Header ${hidden ? 'Header--hidden' : ''}`}>
+    <header className={
+        `Header 
+        ${hidden ? 'Header--hidden' : ''}
+         ${transparent ? 'Header--transparent' : ''}
+      `}>
       <div className="container Header__container">
         <Link to="/charts"><img src={logoInline} className="Header__logo" alt="logo" /></Link>
         <Link
           to="/create"
-          className={`btn btn--secondary Header__cta ${ctaHidden ? '' : 'Header__cta--visible'}`}>
-          New <span className="hide-mobile">&nbsp;chart</span>
+          className={`btn Header__cta ${ctaHidden ? '' : 'Header__cta--visible'}`}>
+          Create new <span className="hide-mobile">&nbsp;chart</span>
         </Link>
       </div>
     </header>

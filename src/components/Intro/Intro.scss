@@ -20,6 +20,13 @@
 .Intro__footer {
   display: flex;
   align-items: center;
+  flex-direction: column;
   gap: 1rem;
   justify-content: center;
+}
+
+@media(min-width: 1024px) {
+  .Intro__footer {
+    flex-direction: row;
+  }
 }
