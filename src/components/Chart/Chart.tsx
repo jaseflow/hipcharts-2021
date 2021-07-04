@@ -94,7 +94,7 @@ function Chart() {
             <div className="hide-desktop">
               <ChartActions chart={chart} cosigns={cosigns} downloadLink={montage} />
             </div>
-            <footer className="Chart__footer">
+            <footer className="Chart__footer" hidden>
               <Link to={`/chart?c=${parseInt(chart) - 1}`}
                 className="btn btn--secondary btn--floating">
                 <i className="fa fa-chevron-left m-r-1"></i>

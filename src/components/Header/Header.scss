@@ -30,10 +30,6 @@
   transform: translateY(-100%);
 }
 
-.Header--transparent {
-  background: none;
-}
-
 @media(max-width: 768px) {
   .Header__cta {
     position: fixed;
@@ -47,5 +43,11 @@
 
   .Header__cta--visible {
     transform: translateY(0);
+  }
+}
+
+@media(min-width: 768px) {
+  .Header--transparent {
+    background: none;
   }
 }
