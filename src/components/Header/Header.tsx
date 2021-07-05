@@ -36,7 +36,7 @@ function Header({ hidden } : HeaderProps) {
         <Link
           to="/create"
           className={`btn Header__cta ${ctaHidden ? '' : 'Header__cta--visible'}`}>
-          Create new <span className="hide-mobile">&nbsp;chart</span>
+          Create new chart
         </Link>
       </div>
     </header>

@@ -9,7 +9,7 @@
 
 .ChartBuilderItem {
   height: 90px;
-  background: rgba(255,255,255,0.025);
+  background: #090d16;
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -17,7 +17,7 @@
   transition: background 375ms ease;
   cursor: pointer;
   &:hover {
-    background: rgba(255,255,255,0.05);
+    background: lighten(#090d16,2);
   }
 }
 
@@ -41,7 +41,6 @@
   height: 40px;
   text-align: center;
   line-height: 40px !important;
-  margin-left: 1rem;
   opacity: 0.75;
   cursor: pointer;
   transition: all 375ms ease;
@@ -57,7 +56,7 @@
   }
   &:hover {
     opacity: 1;
-    background: #111;
+    background: rgba(0,0,0,0.4);
   }
 }
 
@@ -76,8 +75,8 @@
 
 .ChartBuilderItem__order {
   font-weight: 900;
-  margin-right: 2rem;
-  font-size: 2rem;
+  margin-right: 1rem;
+  font-size: 1rem;
 }
 
 .ChartBuilderItem__empty {
@@ -237,7 +236,7 @@
   top: 100%;
   z-index: 20;
   height: 540px;
-  background: #111;
+  background: $bg;
 }
 
 .Results__heading {
@@ -255,7 +254,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 0.15rem;
-  background: #1d1d1d;
+  background: rgba(255,255,255,0.1);
   border-radius: $radius;
   opacity: 0.5;
   transition: opacity 375ms ease;
@@ -265,7 +264,7 @@
 .ResultsItem:hover,
 .ResultsItem--selected {
   opacity: 1;
-  background: #222;
+  background: rgba(255,255,255,0.2);
 }
 
 .ResultsItem__img {

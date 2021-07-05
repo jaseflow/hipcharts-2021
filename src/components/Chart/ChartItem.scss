@@ -94,8 +94,16 @@
   opacity: 1;
 }
 
-@media(min-width: 1000px) {
+@media(min-width: 768px) {
   .ChartItem__name {
     font-size: 1.15rem;
+  }
+
+  .ChartItem__view {
+    display: flex;
+  }
+
+  .ChartItem__order {
+    font-size: 2rem;
   }
 }

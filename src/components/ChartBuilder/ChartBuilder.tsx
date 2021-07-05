@@ -108,8 +108,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
     // create array of selected item ids
     let ids : string[] = [...selectedIds];
-    ids.push(results[resultsIndex].id)
-    console.log(results);
+    results.length && ids.push(results[resultsIndex].id)
 
     setSelectedIds(ids);
     setItems(newItems);
@@ -172,61 +171,63 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   return (
     <section className="ChartBuilder escape-header flex flex--guts">
-      <div className="container container--small">
-        <form onSubmit={handleSave} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
-          {chart === 'albums'
-            ? <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Albums Of All Time</h1>
-            : <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
+      <div className="page-container">
+        <div className="container container--small">
+          <form onSubmit={handleSave} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
+            {chart === 'albums'
+              ? <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Albums Of All Time</h1>
+              : <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
+            }
+            <div className="ChartBuilder__search">
+              <ChartBuilderSearch
+                selectedIds={selectedIds}
+                searching={searching}
+                disabled={chartFull}
+                results={results}
+                resultsIndex={resultsIndex}
+                chartType={chart}
+                focus={searchFocus}
+                onSearchNavigate={handleSearchNavigate}
+                onSearchStart={handleSearchStart}
+                onSearchStop={handleSearchStop}
+                onSearchEnter={handleSearchEnter}
+                onSearchResults={handleSearchResults}
+                onSearchClick={(i: number) => handleSearchClick(i)}
+              />
+            </div>
+            <div className={`ChartBuilder__form ${chartFull ? 'ChartBuilder__form--done' : ''}`}>
+              <ol className="ChartBuilder__items">
+                {itemsList}
+              </ol>
+              <footer className="ChartBuilder__footer">
+                <button type="submit" className="btn" disabled={!chartFull}>Save</button>
+                <button
+                  className="btn btn--secondary"
+                  onClick={reset}>
+                  Reset
+                </button>
+              </footer>
+            </div>
+          </form>
+          {chart === 'albums' &&
+            <Link to="/create/artists" className="ChartBuilder__link ChartBuilder__link--back hide-mobile">
+              <i className="fa fa-chevron-left" style={{marginRight: '1rem'}}></i>
+              Create a Top 5 Rappers Chart
+            </Link>
           }
-          <div className="ChartBuilder__search">
-            <ChartBuilderSearch
-              selectedIds={selectedIds}
-              searching={searching}
-              disabled={chartFull}
-              results={results}
-              resultsIndex={resultsIndex}
-              chartType={chart}
-              focus={searchFocus}
-              onSearchNavigate={handleSearchNavigate}
-              onSearchStart={handleSearchStart}
-              onSearchStop={handleSearchStop}
-              onSearchEnter={handleSearchEnter}
-              onSearchResults={handleSearchResults}
-              onSearchClick={(i: number) => handleSearchClick(i)}
-            />
-          </div>
-          <div className={`ChartBuilder__form ${chartFull ? 'ChartBuilder__form--done' : ''}`}>
-            <ol className="ChartBuilder__items">
-              {itemsList}
-            </ol>
-            <footer className="ChartBuilder__footer">
-              <button type="submit" className="btn" disabled={!chartFull}>Save</button>
-              <button
-                className="btn btn--secondary"
-                onClick={reset}>
-                Reset
-              </button>
-            </footer>
-          </div>
-        </form>
-        {chart === 'albums' &&
-          <Link to="/create/artists" className="ChartBuilder__link ChartBuilder__link--back">
-            <i className="fa fa-chevron-left" style={{marginRight: '1rem'}}></i>
-            Create a Top 5 Rappers Chart
-          </Link>
-        }
-        {chart === 'artists' &&
-          <Link to="/create/albums" className="ChartBuilder__link ChartBuilder__link--forward">
-            Create a Top 5 Albums Chart
-            <i className="fa fa-chevron-right" style={{marginLeft: '1rem'}}></i>
-          </Link>
-        }
+          {chart === 'artists' &&
+            <Link to="/create/albums" className="ChartBuilder__link ChartBuilder__link--forward hide-mobile">
+              Create a Top 5 Albums Chart
+              <i className="fa fa-chevron-right" style={{marginLeft: '1rem'}}></i>
+            </Link>
+          }
+        </div>
+        <ChartBuilderModal
+          open={modalOpen} 
+          onClose={() => setModalOpen(false)}
+          onPublish={(author: string) => handlePublish(author)}
+        />
       </div>
-      <ChartBuilderModal
-        open={modalOpen} 
-        onClose={() => setModalOpen(false)}
-        onPublish={(author: string) => handlePublish(author)}
-      />
     </section>
   );
 }
