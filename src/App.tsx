@@ -55,16 +55,14 @@ function App() {
     ReactGA.set({ page: location.pathname }); // Update the user's current page
     ReactGA.pageview(location.pathname); // Record a pageview for the given page
 
+    // Yuck
     if (location.pathname === '/') {
-      console.log('1')
       setHeaderHidden(true)
       setFooterHidden(true)
     } else if (location.pathname.includes('/create')) {
-      console.log('2')
       setHeaderHidden(false)
       setFooterHidden(true)
     } else {
-      console.log('3')
       setHeaderHidden(false)
       setFooterHidden(false)
     }

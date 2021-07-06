@@ -24,6 +24,10 @@
   text-decoration: none;
 }
 @media(min-width: 800px) {
+  .Empty {
+    height: calc(100vh - 300px);
+  }
+
   .Charts__list {
     grid-template-columns: repeat(2,1fr);
   }
@@ -46,10 +50,6 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
   }
-}
-
-.Empty {
-  height: calc(100vh - 80px);
 }
 
 .Empty__title {
