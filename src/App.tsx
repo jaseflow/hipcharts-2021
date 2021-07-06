@@ -7,6 +7,7 @@ import Chart from './components/Chart/Chart';
 import Charts from './components/Charts/Charts';
 import ChartOptions from './components/ChartOptions/ChartOptions';
 import ChartBuilder from './components/ChartBuilder/ChartBuilder';
+import StickyFooter from './components/StickyFooter/StickyFooter';
 
 import {
   Route,
@@ -36,6 +37,7 @@ function App() {
   let location = useLocation();
 
   const [headerHidden, setHeaderHidden] = useState(false)
+  const [footerHidden, setFooterHidden] = useState(false)
   const [refreshingChart, setRefreshingChart ] = useState(false)
 
   const usePrevious = <T extends unknown>(value: T): T | undefined => {
@@ -54,9 +56,17 @@ function App() {
     ReactGA.pageview(location.pathname); // Record a pageview for the given page
 
     if (location.pathname === '/') {
+      console.log('1')
       setHeaderHidden(true)
-    } else if (headerHidden) {
+      setFooterHidden(true)
+    } else if (location.pathname.includes('/create')) {
+      console.log('2')
       setHeaderHidden(false)
+      setFooterHidden(true)
+    } else {
+      console.log('3')
+      setHeaderHidden(false)
+      setFooterHidden(false)
     }
 
     if (prevLocation && prevLocation.pathname.includes('/create/')) {
@@ -78,6 +88,9 @@ function App() {
         <Route path="/chart" children={<Chart />} />
         <Route path="/charts" children={<Charts />} />
       </Switch>
+      <div className="hide-desktop">
+        <StickyFooter visible={!footerHidden} />
+      </div>
     </div>
   );
 }

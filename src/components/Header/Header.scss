@@ -20,7 +20,6 @@
 
 .Header__container {
   height: 80px;
-  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,6 +42,10 @@
 
   .Header__cta--visible {
     transform: translateY(0);
+  }
+
+  .Header__cta {
+    display: none;
   }
 }
 
