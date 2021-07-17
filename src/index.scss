@@ -22,8 +22,27 @@ body {
   height: 100vh;
 }
 
+img,
+table {
+  width: 100%;
+}
+
 img {
   max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.ghost {
+  opacity: 0.10;
+  transition: opacity 375ms ease;
+}
+
+.ghosty {
+  opacity: 0.5;
+  transition: opacity 375ms ease;
 }
 
 .text-centered {
@@ -131,7 +150,8 @@ img {
   }
 }
 
-h1 {
+h1,
+h2 {
   margin-bottom: 2rem;
 }
 
@@ -169,6 +189,10 @@ h1 {
   font-size: 2.25rem;
 }
 
+.title--light {
+  font-weight: 100;
+}
+
 @media(min-width: 1024px) {
   .title {
     font-size: 2.25rem;
@@ -187,11 +211,13 @@ h1 {
 }
 
 .input {
-  height: 50px;
+  height: 45px;
   width: 100%;
+  min-width: 240px;
   font-size: 100%;
   padding: 0 1rem;
   border: 0;
+  background: #fff;
   margin-bottom: 1rem;
   border-radius: $radius;
   outline: 0;
@@ -202,6 +228,7 @@ label {
   display: block;
   font-size: 1.5rem;
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .flex {
@@ -210,6 +237,22 @@ label {
 
 .flex__full {
   flex: 1;
+}
+
+.flex--half-gap {
+  gap: 0.5rem;
+}
+
+.flex--end {
+  justify-content: flex-end;
+}
+
+.flex--bottom {
+  align-items: flex-end;
+}
+
+.flex--gap {
+  gap: 1rem;
 }
 
 .flex--column {
@@ -244,6 +287,7 @@ label {
 .m-t-1 { margin-top: 1rem; }
 .m-l-1 { margin-left: 1rem; }
 .m-r-1 { margin-right: 1rem; }
+.m-b-1 { margin-bottom: 1rem; }
 
 @media(min-width: 768px) {
   .title--large {
@@ -269,3 +313,4 @@ label {
 @import "components/ArtistWall/ArtistWall.scss";
 @import "components/Spinner/Spinner.scss";
 @import "components/StickyFooter/StickyFooter.scss";
+@import "components/Admin/Admin.scss";

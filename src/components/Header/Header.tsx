@@ -18,7 +18,7 @@ function Header({ hidden } : HeaderProps) {
   const [transparent, setTransparent] = useState(false);
 
   useEffect(() => {
-    if(location.pathname.includes('/create')) {
+    if(location.pathname.includes('/create') || location.pathname.includes('/admin')) {
       setCtaHidden(true)
     } else if(location.pathname.includes('/chart') && window.innerWidth > 768) {
       setTransparent(true)

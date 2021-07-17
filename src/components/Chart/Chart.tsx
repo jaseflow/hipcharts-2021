@@ -25,7 +25,7 @@ function Chart() {
   let chart = params.get("c") || '';
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`)
+    fetch(`${process.env.REACT_APP_API_URL}/user-charts/${chart}`)
       .then(response => response.json())
       .then((data) => {
         const chart = data.data[0];

@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
 import Chart from './components/Chart/Chart';
 import Charts from './components/Charts/Charts';
+import Admin from './components/Admin/Admin';
 import ChartOptions from './components/ChartOptions/ChartOptions';
 import ChartBuilder from './components/ChartBuilder/ChartBuilder';
 import StickyFooter from './components/StickyFooter/StickyFooter';
@@ -85,6 +86,7 @@ function App() {
         <Route path="/create/:chart" children={<ChartBuilder refresh={refreshingChart} />} />
         <Route path="/chart" children={<Chart />} />
         <Route path="/charts" children={<Charts />} />
+        <Route path="/admin" children={<Admin />} />
       </Switch>
       <div className="hide-desktop">
         <StickyFooter visible={!footerHidden} />

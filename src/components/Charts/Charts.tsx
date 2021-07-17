@@ -27,7 +27,7 @@ function Charts() {
   })
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/charts/all`)
+    fetch(`${process.env.REACT_APP_API_URL}/user-charts`)
       .then(response => response.json())
       .then((data) => {
         setCharts(data.data)

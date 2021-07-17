@@ -18,7 +18,7 @@ function ChartActions({ downloadLink, cosigns, chart } : ChartActionProps) {
       const newVal = cosigns - 1;
       setCosignsLive(newVal);
       setCosigned(false)
-      fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/user-charts/${chart}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function ChartActions({ downloadLink, cosigns, chart } : ChartActionProps) {
       const newVal = cosigns + 1;
       setCosignsLive(newVal);
       setCosigned(true)
-      fetch(`${process.env.REACT_APP_API_URL}/chart/${chart}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/user-charts/${chart}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

@@ -148,7 +148,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
       "items":  items.map((d: any) => d.id).join('|'),
       "author": author,
     }
-    fetch(`${process.env.REACT_APP_API_URL}/charts/new`, {
+    fetch(`${process.env.REACT_APP_API_URL}/user-charts/new`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
