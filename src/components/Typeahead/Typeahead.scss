@@ -1,0 +1,65 @@
+.Ta {
+  position: relative;
+}
+
+.Ta__results {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  top: 100%;
+  z-index: 20;
+  display: none;
+}
+
+.Ta__heading {
+  margin: 0.75rem 0;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  strong {
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
+.Ta__icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: $darkBlue;
+}
+
+.Ta__Item {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.15rem;
+  background: #10141c;
+  border-radius: $radius;
+  opacity: 1;
+  transition: opacity 375ms ease;
+  cursor: pointer;
+}
+
+.Ta__Item:hover,
+.Ta__Item--selected {
+  opacity: 1;
+  background: #353940;
+}
+
+.Ta__ItemImg {
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 1rem;
+  opacity: 0;
+}
+
+.Ta__ItemImg--loaded {
+  opacity: 1;
+}
+
+.Ta__results--searching {
+  display: block;
+}
