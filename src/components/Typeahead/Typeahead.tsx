@@ -51,7 +51,6 @@ function Typeahead(
 
   function handleSearchClick(result: any) {
     onSearchClick(result);
-    setValue(result.name);
     closeSearch();
   }
 
@@ -65,6 +64,7 @@ function Typeahead(
 
   function closeSearch() {
     setSearching(false);
+    setValue('');
     setResultsIndex(0);
   }
 
@@ -75,15 +75,16 @@ function Typeahead(
       closeSearch()
     }
     if (e.keyCode === 40) {
+      e.preventDefault();
       handleSearchNavigate('down')
     }
     if (e.keyCode === 38) {
+      e.preventDefault();
       handleSearchNavigate('up')
     }
     if (e.keyCode === 13) {
       e.preventDefault();
       closeSearch();
-      setValue(results[resultsIndex].name);
       onSearchEnter(results[resultsIndex]);
     }
   }

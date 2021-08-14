@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import ChartBuilderResult from './ChartBuilderResult';
+import TypeaheadItem from '../Typeahead/TypeaheadItem';
 
 interface ChartBuilderSearchProps {
   chartType: string;
@@ -107,7 +107,7 @@ function ChartBuilderSearch(
     const lastImage = r.images && r.images[r.images.length - 1]
 
     return (
-      <ChartBuilderResult
+      <TypeaheadItem
         key={`result-${r.name}`}
         selected={i === resultsIndex}
         imageUrl={lastImage.url}

@@ -218,7 +218,6 @@ h2 {
   padding: 0 1rem;
   border: 0;
   background: #fff;
-  margin-bottom: 1rem;
   border-radius: $radius;
   outline: 0;
   transition: border 375ms ease;
@@ -226,7 +225,7 @@ h2 {
 
 label {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -237,6 +236,10 @@ label {
 
 .flex__full {
   flex: 1;
+}
+
+.flex__fuller {
+  flex: 2;
 }
 
 .flex--half-gap {
@@ -289,9 +292,18 @@ label {
 .m-r-1 { margin-right: 1rem; }
 .m-b-1 { margin-bottom: 1rem; }
 
+.m-b-2 { margin-bottom: 2rem; }
+
+.m-b-4 { margin-bottom: 4rem; }
+
 @media(min-width: 768px) {
   .title--large {
     font-size: 3rem;
+  }
+
+  .title--larger {
+    font-size: 5rem;
+    margin-bottom: 1.5em;
   }
 
   .hide-mobile {
@@ -314,3 +326,4 @@ label {
 @import "components/Spinner/Spinner.scss";
 @import "components/StickyFooter/StickyFooter.scss";
 @import "components/Admin/Admin.scss";
+@import "components/Typeahead/Typeahead.scss";

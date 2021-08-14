@@ -51,7 +51,7 @@ function Charts() {
                   <div className="text-centered flex flex--column flex--guts">
                     <h1 className="Empty__title">No charts</h1>
                     <h2 className="Empty__subtitle">Why not be the first to make one?</h2>
-                    <IntroCta small={true} />
+                    <IntroCta small={true} text="Create  chart" to="/create" />
                   </div>
                 </div>
               )

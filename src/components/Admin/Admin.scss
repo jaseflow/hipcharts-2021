@@ -1,8 +1,28 @@
 .Admin__container {
-  height: calc(100vh - (80px + 4rem));
+  padding-top: 10vh;
+}
+
+.Admin__form {
+  position: relative;
+  z-index: 50;
+}
+
+.Admin__search {
+  position: relative;
+}
+
+.Admin__results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
 }
 
 .Admin__footer {
-  text-align: center;
-  min-width: 400px;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  background: rgba(255,255,255,0.05);
 }
+

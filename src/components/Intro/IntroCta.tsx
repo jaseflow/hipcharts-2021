@@ -4,11 +4,24 @@ import { Link } from 'react-router-dom';
 
 interface IntroCtaProps {
   small?: boolean;
+  secondary?: boolean;
+  to: string;
+  text: string;
 }
 
-function IntroCta({ small }: IntroCtaProps) {
+function IntroCta({ small, to, text, secondary }: IntroCtaProps) {
   return (
-    <Link to="/create" data-testid="cta" className={`btn ${!small ? 'btn--large' : ''}`}>Create a chart</Link>
+    <Link
+      to={to}
+      data-testid={`cta-${to}`}
+      className={
+        `btn
+        ${!small ? 'btn--large' : ''}
+        ${secondary ? 'btn--secondary' : ''}
+        `
+      }>
+      { text }
+    </Link>
   );
 }
 
