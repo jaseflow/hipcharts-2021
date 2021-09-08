@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
+import ChartTile from '../ChartTile/ChartTile';
 import IntroCta from '../Intro/IntroCta';
 
 import Spinner from '../Spinner/Spinner';
 
-function Charts() {
+import utils from '../../utils';
 
-  const [charts, setCharts] = useState([])
+function UserCharts() {
+
+  const [userUserCharts, setUserCharts] = useState([])
   const [loading, setLoading] = useState(true);
 
-  const chartsList = charts && charts.map((chart: any) => {
+  const userUserChartsList = userUserCharts && userUserCharts.map((chart: any) => {
     return (
-      <h1>{chart.name}</h1>
+      <ChartTile
+        key={`chart-${chart.id}`}
+        id={chart.id}
+        title={`${chart.author}'s`}
+        subTitle={`Top 5 ${utils.capitalize(chart.type)} Of All Time`}
+        imageUrl={chart.montage}
+        small={true}
+        cosigns={5}
+      />
     )
   })
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/charts`)
+    fetch(`${process.env.REACT_APP_API_URL}/user-userUserCharts`)
       .then(response => response.json())
       .then((data) => {
-        setCharts(data.data)
+        setUserCharts(data.data)
         setLoading(false);
       })
   },[])
@@ -31,14 +42,14 @@ function Charts() {
       <section className="escape-header">
         <div className="page-container">
           <div className="container">
-            <h1 className="title title--large">Browse Charts</h1>
+            <h1 className="title title--large">Browse UserCharts</h1>
           </div>
-          <div className="Charts">
-            {!charts.length ?
+          <div className="UserCharts">
+            {!userUserCharts.length ?
               (
                 <div className="Empty flex flex--guts">
                   <div className="text-centered flex flex--column flex--guts">
-                    <h1 className="Empty__title">No charts</h1>
+                    <h1 className="Empty__title">No userUserCharts</h1>
                     <h2 className="Empty__subtitle">Why not be the first to make one?</h2>
                     <IntroCta small={true} text="Create  chart" to="/create" />
                   </div>
@@ -46,8 +57,8 @@ function Charts() {
               )
               :
               <div className="container">
-                <div className="Charts__list">
-                  {chartsList}
+                <div className="UserCharts__list">
+                  {userUserChartsList}
                 </div>
               </div>
             }
@@ -58,4 +69,4 @@ function Charts() {
   }
 }
 
-export default Charts;
+export default UserCharts;

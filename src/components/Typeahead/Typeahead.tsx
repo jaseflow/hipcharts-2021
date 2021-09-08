@@ -64,7 +64,6 @@ function Typeahead(
 
   function closeSearch() {
     setSearching(false);
-    setValue('');
     setResultsIndex(0);
   }
 
@@ -85,6 +84,7 @@ function Typeahead(
     if (e.keyCode === 13) {
       e.preventDefault();
       closeSearch();
+      setValue(results[0]?.name);
       onSearchEnter(results[resultsIndex]);
     }
   }

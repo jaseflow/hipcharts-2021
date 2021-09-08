@@ -13,9 +13,10 @@
 }
 
 .Ta__heading {
-  margin: 0.75rem 0;
+  padding: 0.75rem 0;
   font-weight: 300;
   color: rgba(255,255,255,0.6);
+  background: $bg;
   strong {
     font-weight: 700;
     color: #fff;
@@ -33,7 +34,7 @@
   height: 60px;
   display: flex;
   align-items: center;
-  margin-bottom: 0.15rem;
+  border-bottom: 0.15rem solid $bg;
   background: #10141c;
   border-radius: $radius;
   opacity: 1;

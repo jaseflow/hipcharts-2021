@@ -6,6 +6,7 @@ interface ChartBuilderSearchProps {
   chartType: string;
   disabled: boolean;
   results?: any[];
+  query?: string;
   resultsIndex?: number;
   selectedIds: any[];
   searching?: boolean;
@@ -31,6 +32,7 @@ function ChartBuilderSearch(
     selectedIds,
     results,
     resultsIndex,
+    query,
     searching,
     focus,
   } : ChartBuilderSearchProps) {
@@ -67,22 +69,13 @@ function ChartBuilderSearch(
   }
 
   useEffect(() => {
-    let realChartType = '';
-    const query = chartType && chartType.slice(0, -1);
-
-    if (chartType === 'rappers') {
-      realChartType = 'artists'
-    } else {
-      realChartType = chartType
-    }
-
     if (value === '') {
       onSearchStop();
     }
 
     if (value) {
       onSearchStart();
-      fetch(`${process.env.REACT_APP_API_URL}/search/${realChartType}?${query}=${value}`)
+      fetch(`${process.env.REACT_APP_API_URL}/search${query}`)
         .then(response => response.json())
         .then((data) => {
           const filteredResults = data && data.length > 0 && data.filter((r : any) => {

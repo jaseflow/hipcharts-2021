@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
+
+import { ChartContext } from '../../chart-context';
 
 import ChartBuilderItem from './ChartBuilderItem';
 import ChartBuilderSearch from './ChartBuilderSearch';
@@ -169,15 +171,14 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setModalOpen(true);
   }
 
+  const contextChart = useContext(ChartContext);
+
   return (
     <section className="ChartBuilder escape-header flex flex--guts">
       <div className="page-container">
         <div className="container container--small">
           <form onSubmit={handleSave} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
-            {chart === 'albums'
-              ? <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Albums Of All Time</h1>
-              : <h1 className="ChartBuilder__title title" data-testid="title">Top 5 Rappers Of All Time</h1>
-            }
+            <h1 className="ChartBuilder__title title" data-testid="title">{contextChart.title}</h1>
             <div className="ChartBuilder__search">
               <ChartBuilderSearch
                 selectedIds={selectedIds}
@@ -187,6 +188,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
                 resultsIndex={resultsIndex}
                 chartType={chart}
                 focus={searchFocus}
+                query={contextChart.query}
                 onSearchNavigate={handleSearchNavigate}
                 onSearchStart={handleSearchStart}
                 onSearchStop={handleSearchStop}

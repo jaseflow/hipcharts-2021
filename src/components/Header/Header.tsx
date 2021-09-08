@@ -20,6 +20,8 @@ function Header({ hidden } : HeaderProps) {
   useEffect(() => {
     if(location.pathname.includes('/create') || location.pathname.includes('/admin')) {
       setCtaHidden(true)
+    } else if(location.pathname.includes('/charts')) {
+      setCtaHidden(false)
     } else if(location.pathname.includes('/chart') && window.innerWidth > 768) {
       setTransparent(true)
     }
