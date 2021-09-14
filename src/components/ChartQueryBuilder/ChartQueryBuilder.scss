@@ -1,0 +1,28 @@
+.ChartQueryBuilder__footer {
+  position: relative;
+  margin-bottom: 165px;
+}
+
+.ChartQueryBuilder__action {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: $bg;
+	bottom: 0;
+  transition: transform 375ms ease;
+}
+
+.ChartQueryBuilder__artist {
+  opacity: 0;
+  transition: opacity 375ms ease;
+}
+
+.show-artist {
+  .ChartQueryBuilder__artist {
+    opacity: 1;
+  }
+  .ChartQueryBuilder__action {
+    transform: translateY(calc(100% + 2rem));
+  }
+}
