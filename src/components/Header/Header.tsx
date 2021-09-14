@@ -38,7 +38,7 @@ function Header({ hidden } : HeaderProps) {
         <Link
           to="/create"
           className={`btn Header__cta ${ctaHidden ? '' : 'Header__cta--visible'}`}>
-          Create new chart
+          Create Chart
         </Link>
       </div>
     </header>

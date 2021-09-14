@@ -13,6 +13,7 @@ interface TypeaheadProps {
   noSubText?: boolean;
   placeholder?: string;
   disabled?: boolean;
+  clearOnEnter?: boolean;
 }
 
 function Typeahead(
@@ -27,6 +28,7 @@ function Typeahead(
     placeholder,
     noSubText,
     disabled,
+    clearOnEnter,
   } : TypeaheadProps) {
 
   const [value, setValue ] = useState('');
@@ -40,7 +42,6 @@ function Typeahead(
     if (!value.length) {
       setSearching(false)
     } else { 
-      console.log(query);
       fetch(`${process.env.REACT_APP_API_URL}/search${query}&q=${value}`)
         .then(response => response.json())
         .then((data) => {
@@ -68,7 +69,9 @@ function Typeahead(
   }
 
   function handleKeyDown(e: any) {
-    setSearching(true);
+    if (value.length) {
+      setSearching(true);
+    }
     if (e.keyCode === 27) {
       setValue('');
       closeSearch()
@@ -84,7 +87,11 @@ function Typeahead(
     if (e.keyCode === 13) {
       e.preventDefault();
       closeSearch();
-      setValue(results[0]?.name);
+      if(clearOnEnter) {
+        setValue('');
+      } else {
+        setValue(results[0]?.name);
+      }
       onSearchEnter(results[resultsIndex]);
     }
   }

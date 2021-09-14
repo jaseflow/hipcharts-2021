@@ -11,6 +11,7 @@ interface ChartBuilderSearchProps {
   selectedIds: any[];
   searching?: boolean;
   focus?: boolean;
+  artist?: string;
   onSearchStart: any;
   onSearchNavigate: any;
   onSearchStop: any;
@@ -22,6 +23,7 @@ interface ChartBuilderSearchProps {
 function ChartBuilderSearch(
   {
     chartType,
+    artist,
     disabled,
     onSearchStart,
     onSearchStop,
@@ -73,17 +75,28 @@ function ChartBuilderSearch(
       onSearchStop();
     }
 
-    if (value) {
+    if (value.length > 0) {
       onSearchStart();
-      fetch(`${process.env.REACT_APP_API_URL}/search${query}`)
+      fetch(`${process.env.REACT_APP_API_URL}/search${query}&q=${value}`)
         .then(response => response.json())
         .then((data) => {
           const filteredResults = data && data.length > 0 && data.filter((r : any) => {
             const selected = selectedIds.includes(r.id)
-            if (r.images.length && !selected) {
-              return true
+            console.log(r);
+            if (r.type === 'track') {
+              console.log('1');
+              if (r?.album?.images?.length && !selected) {
+                console.log('2');
+                return true
+              } else {
+                return false
+              }
             } else {
-              return false
+              if (r?.images?.length && !selected) {
+                return true
+              } else {
+                return false
+              }
             }
           })
           onSearchResults(filteredResults)
@@ -97,19 +110,32 @@ function ChartBuilderSearch(
   }, [value, focus]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const resultsList = results && results.map((r, i) => {
-    const lastImage = r.images && r.images[r.images.length - 1]
+    let lastImage;
+
+    if (r.images) {
+      console.log('1');
+      if (r.type === 'track') {
+        console.log('2');
+        lastImage = r.album?.images[r.images.length - 1];
+      } else {
+        console.log('3');
+        lastImage = r.images[r.images.length - 1];
+      }
+    }
 
     return (
       <TypeaheadItem
         key={`result-${r.name}`}
         selected={i === resultsIndex}
-        imageUrl={lastImage.url}
+        imageUrl={lastImage?.url}
         result={r.name}
         id={r.id}
         onSelected={() => handleSearchClick(i)}
       />
     )
   })
+
+  const placeholder = artist ? `Search for ${artist} ${chartType}s` : `Search for ${chartType}s`;
 
   return (
     <div className={`ChartBuilderSearch ${disabled ? 'ChartBuilderSearch--disabled' : ''}`}>
@@ -118,7 +144,7 @@ function ChartBuilderSearch(
         value={value}
         disabled={disabled}
         data-testid="search"
-        placeholder={`Search for ${chartType}`}
+        placeholder={placeholder}
         className="input"
         onChange={(e) => setValue(e.currentTarget.value)}
         onKeyDown={handleKeyDown}

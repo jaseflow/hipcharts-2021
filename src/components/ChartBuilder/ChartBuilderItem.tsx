@@ -39,7 +39,7 @@ function ChartBuilderItem({
               <img 
                 src={imageUrl}
                 alt={name}
-                className={`ResultsItem__img ${imgLoaded ? 'ResultsItem__img--loaded': ''}`}
+                className={`ChartBuilderItem__img ${imgLoaded ? 'ChartBuilderItem__img--loaded': ''}`}
                 onLoad={() => setImgLoaded(true)}
               />
               <div>

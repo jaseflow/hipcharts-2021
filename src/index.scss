@@ -27,6 +27,10 @@ small,
   height: 100vh;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 img,
 table {
   width: 100%;
@@ -101,6 +105,7 @@ table {
   gap: 1rem;
   label {
     flex: 1;
+    overflow: hidden;
   }
 }
 
@@ -120,6 +125,7 @@ input[type="radio"] {
   position: absolute;
   width: 0px;
   height: 0px;
+  left: -100%;
 }
 
 .btn--tab {
@@ -355,9 +361,10 @@ label {
 @import "components/Chart/Chart.scss";
 @import "components/Charts/Charts.scss";
 @import "components/UserCharts/UserCharts.scss";
-@import "components/ChartOptions/ChartOptions.scss";
+@import "components/Create/Create.scss";
 @import "components/ChartBuilder/ChartBuilder.scss";
 @import "components/ArtistWall/ArtistWall.scss";
 @import "components/Spinner/Spinner.scss";
 @import "components/StickyFooter/StickyFooter.scss";
 @import "components/Typeahead/Typeahead.scss";
+@import "components/ChartQueryBuilder/ChartQueryBuilder.scss";

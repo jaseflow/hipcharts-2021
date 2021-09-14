@@ -21,10 +21,16 @@
   }
 }
 
+.ChartBuilderItem__img {
+  width: 64px;
+  margin-right: 1rem;
+}
+
 .ChartBuilderItem__content {
   opacity: 0;
   transform: translateX(-2rem);
   animation: showContent 375ms ease forwards;
+  flex: 1;
 }
 
 .ChartBuilderItem__name {
@@ -101,6 +107,7 @@
 .ChartBuilder__title {
   text-align: center;
   animation: showTitle 375ms ease forwards;
+  text-transform: capitalize;
 }
 
 .ChartBuilder__link {
@@ -137,16 +144,18 @@
   animation: showSearch 375ms ease forwards;
   position: relative;
   z-index: 50;
+  margin-bottom: 1rem;
 }
 
 .ChartBuilder__form {
   position: relative;
   transition: transform 375ms 100ms ease;
+  background: $bg;
 }
 
 .ChartBuilder__form--done {
   z-index: 60;
-  transform: translateY(-80px);
+  transform: translateY(calc(-1rem - 45px));
 }
 
 .ChartBuilder__items {

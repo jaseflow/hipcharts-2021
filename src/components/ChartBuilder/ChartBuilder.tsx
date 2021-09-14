@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo } from 'react';
 
-import { ChartContext } from '../../chart-context';
+import Typeahead from '../Typeahead/Typeahead';
 
 import ChartBuilderItem from './ChartBuilderItem';
 import ChartBuilderSearch from './ChartBuilderSearch';
@@ -23,11 +23,13 @@ interface Chart {
 
 interface ChartBuilderProps {
   refresh?: boolean;
+  query?: string;
+  title?: string;
+  artist?: string;
+  chartType?: string;
 }
 
-function ChartBuilder({ refresh } :ChartBuilderProps) {
-
-  let { chart } = useParams<{ chart: string }>();
+function ChartBuilder({ refresh, query, title, artist, chartType } :ChartBuilderProps) {
 
   const history = useHistory();
 
@@ -41,9 +43,9 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
   const [searchFocus, setSearchFocus ] = useState(false)
 
   const chartFull = useMemo(() => {
-    const firstAvailable = items.findIndex((item:any) => !item.name)
+    const firstAvailable = items?.findIndex((item:any) => !item?.name)
     setInsertIndex(firstAvailable)
-    return items.every((item:any) => item['name'])
+    return items?.every((item:any) => item['name'])
   },[items]);
 
   const itemsList = items.map((item: Chart, i) => {
@@ -60,7 +62,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
         artist={artist}
         key={`chart-item-${i}`}
         order={i + 1}
-        chartType={chart}
+        chartType={chartType}
         onMoveUp={handleMoveUp}
         onMoveDown={handleMoveDown}
         onRemove={handleRemove}
@@ -105,8 +107,8 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     }
   }
 
-  function handleSearchEnter(e: any) {
-    const newItems = update(items, { $splice: [[insertIndex, 1, results[resultsIndex]]] });
+  function handleSearchEnter(item: any) {
+    const newItems = update(items, { $splice: [[insertIndex, 1, item]] });
 
     // create array of selected item ids
     let ids : string[] = [...selectedIds];
@@ -146,7 +148,7 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
 
   function saveChart(author: string) {
     const data = {
-      "type": chart,
+      "type": chartType,
       "items":  items.map((d: any) => d.id).join('|'),
       "author": author,
     }
@@ -171,31 +173,31 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
     setModalOpen(true);
   }
 
-  const contextChart = useContext(ChartContext);
+  let placeholder;
+
+  if (artist) {
+    placeholder = `Search for ${artist} ${chartType}s`
+  } else {
+    placeholder = `Search for ${chartType}s`
+  }
+
+  console.log(chartType);
 
   return (
-    <section className="ChartBuilder escape-header flex flex--guts">
+    <section className="ChartBuilder">
       <div className="page-container">
+        <h1 className="title title--large text-centered capitalize" data-testid="title">{title}</h1>
         <div className="container container--small">
           <form onSubmit={handleSave} className={`ChartBuilder__wrap ${refresh ? 'ChartBuilder__wrap--refresh' : ''}`}>
-            <h1 className="ChartBuilder__title title" data-testid="title">{contextChart.title}</h1>
             <div className="ChartBuilder__search">
-              <ChartBuilderSearch
-                selectedIds={selectedIds}
-                searching={searching}
+              <Typeahead
+                noSubText={true}
+                clearOnEnter
+                query={query!}
+                placeholder={placeholder}
                 disabled={chartFull}
-                results={results}
-                resultsIndex={resultsIndex}
-                chartType={chart}
-                focus={searchFocus}
-                query={contextChart.query}
-                onSearchNavigate={handleSearchNavigate}
-                onSearchStart={handleSearchStart}
-                onSearchStop={handleSearchStop}
-                onSearchEnter={handleSearchEnter}
-                onSearchResults={handleSearchResults}
                 onSearchClick={(i: number) => handleSearchClick(i)}
-              />
+                onSearchEnter={handleSearchEnter} />
             </div>
             <div className={`ChartBuilder__form ${chartFull ? 'ChartBuilder__form--done' : ''}`}>
               <ol className="ChartBuilder__items">
@@ -211,13 +213,13 @@ function ChartBuilder({ refresh } :ChartBuilderProps) {
               </footer>
             </div>
           </form>
-          {chart === 'albums' &&
+          {chartType === 'albums' &&
             <Link to="/create/artists" className="ChartBuilder__link ChartBuilder__link--back hide-mobile">
               <i className="fa fa-chevron-left" style={{marginRight: '1rem'}}></i>
               Create a Top 5 Rappers Chart
             </Link>
           }
-          {chart === 'artists' &&
+          {chartType === 'artists' &&
             <Link to="/create/albums" className="ChartBuilder__link ChartBuilder__link--forward hide-mobile">
               Create a Top 5 Albums Chart
               <i className="fa fa-chevron-right" style={{marginLeft: '1rem'}}></i>
