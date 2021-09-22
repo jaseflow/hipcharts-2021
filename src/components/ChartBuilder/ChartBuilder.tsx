@@ -3,7 +3,6 @@ import React, { useState, useMemo } from 'react';
 import Typeahead from '../Typeahead/Typeahead';
 
 import ChartBuilderItem from './ChartBuilderItem';
-import ChartBuilderSearch from './ChartBuilderSearch';
 import ChartBuilderModal from './ChartBuilderModal';
 
 import update from 'immutability-helper';
@@ -152,7 +151,7 @@ function ChartBuilder({ refresh, query, title, artist, chartType } :ChartBuilder
       "items":  items.map((d: any) => d.id).join('|'),
       "author": author,
     }
-    fetch(`${process.env.REACT_APP_API_URL}/user-charts/new`, {
+    fetch(`${process.env.REACT_APP_API_URL}/user-charts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
